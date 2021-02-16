@@ -1,65 +1,122 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { useState, useContext } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import axios from "axios"
+import AuthComponent, { FormsWrapper, MembershipWrapper } from '../styles/AuthComponent.styles'
+import GlobalsStyles from '../styles/Globals.styles'
+import { useRouter } from "next/router"
+import { AuthContext } from '../context/AuthContext'
+
+
+
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [userData, setUser] = useContext(AuthContext);
+  const router = useRouter();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    console.log("clicked");
+    const user = await fetch("https://9c7b96957c5b.ngrok.io/api/auth/login", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        memberid_email: email,
+        password
+      })
+    });
+    const userData = await user.json()
+    if (user.status === 200) {
+      setUser(userData);
+      router.push("/dashboard");
+    } else if (user.status === 404) {
+      setIsError(true);
+    }
+
+  }
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <GlobalsStyles />
+      <AuthComponent>
+        <FormsWrapper>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+          <nav>
+            <div className="logo-wrapper">
+              <Image src="/logo.svg" height="100" width="300" />
+            </div>
+          </nav>
+          <div className="forms-wrapper-body">
+            <div>
+              <div className="go-back-btn">
+                <Link href="/"><a>Go Back</a></Link>
+              </div>
+            </div>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+            <h1 className="member-login">Member Login</h1>
+            <p className={`invalid-error ${isError ? `show-error` : `hide-error`}`}>Wrong email address or password. Forgot your password?</p>
+            <form onSubmit={handleSubmit}>
+              <div className="email-entry input-wrapper">
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+                <label>Member Id or Email</label>
+                <div className="input-wrapper">
+                  <div>
+                    <input type="text" onChange={e => setEmail(e.target.value)} placeholder="Enter your ID or Email Address" />
+                  </div>
+                  <div>
+                    <Image src="/pass.svg" width="15" height="15" alt="Email icon" />
+                  </div>
+                </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+              </div>
+              <div className="password-entry input-wrapper">
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+                <label>Password</label>
+                <div className="input-wrapper">
+                  <input type="text" onChange={e => setPassword(e.target.value)} placeholder="Enter your password" />
+                  <Image src="/password.svg" width="15" height="15" alt="Password icon" />
+                </div>
+              </div>
+              <div className="reset-password-div">
+                <p>Keep me signed in </p>
+                <Link href="/"><a>Reset Password</a></Link>
+              </div>
+              <input type="submit" value="Login" className="submit-btn" />
+            </form>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+          </div>
+
+        </FormsWrapper>
+        <MembershipWrapper>
+          <div className="container">
+            <div className="membership-text">
+              <p>HI THERE!</p>
+              <p>WELCOME TO</p>
+              <p>THE ONLINE COMMUNITY OF</p>
+              <p>NAPE MEMBERS.</p>
+            </div>
+            <div className="membership-type-div">
+              <button className="individual-membership-btn">Individual Membership</button>
+              <button className="corporate-membership-btn">Corprate Membership</button>
+            </div>
+            <div className="membership-note-div">
+              <p>
+                Please note that an applicant for ACTIVE membership of the association must be a person engaged in the practice or teaching of the geosciences or petroleum related science provided he/she holds at least a Bachelor's Degree from an Educational Institution of acceptable academic standards. This is in addition to at least three (3) years of work experience (post NYSC) in the practice or teaching of the geosciences or petroleum related science. Credit for experience can be counted as follows: Master’s: one (1) year; Doctorate: two (two) years. Apply Now
             </p>
-          </a>
-        </div>
-      </main>
+            </div>
+          </div>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+        </MembershipWrapper>
+        <div className="quick-actions">
+          <h3>
+            Quick Actions
+          </h3>
+        </div>
+      </AuthComponent>
+    </>
   )
 }
