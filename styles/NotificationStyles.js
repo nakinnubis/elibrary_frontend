@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-const NotificationWrapper = styled.div`
+const NotificationStyles = styled.div`
     display:grid;
     grid-template-columns:60% 30% 10%;
     align-items:center;
@@ -14,12 +14,15 @@ const NotificationWrapper = styled.div`
             font-size:14px;
             margin:0;
             color:#777777;
+            font-weight:bold;
+            margin-bottom:10px;
         }
 
         p{
             font-size:14px;
             color:#777777;
             margin:0;
+            line-height:1.5;
         }
       
     }
@@ -40,4 +43,4 @@ const NotificationWrapper = styled.div`
 `
 
 
-export default NotificationWrapper;
+export default NotificationStyles;
