@@ -1,11 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import MemberInfoStyles from '../styles/MemberInfoStyles';
 import Image from 'next/image';
 
 const MemberInformation = () => {
-  const userData = useContext(AuthContext);
-  const user = userData[0].message;
+  // const [user] = useContext(AuthContext);
+  // const user = userData[0]
+  const [user, setUser] = useState({memberPeople:[{otherNames:""}]});
+  console.log("user+++", user)
+
+  useEffect(() => {
+    let user = JSON.parse(window.localStorage.getItem("user"));
+    setUser(user)
+  }, [])
   return (
     <MemberInfoStyles className='wrapper container my-5 w-100 p-0'>
       {/* <div className='member-grid'>
@@ -44,8 +51,8 @@ const MemberInformation = () => {
 
             <div className="row row-custom">
                 <div className="col-md-6 col-custom">
-                    <h2 className="wel-h2 grey-text">Welcome Back,{' '}
-              {user ? user.memberPeople[0].otherNames : 'Goodness Ibenema'}</h2>
+                    <h2 className="wel-h2 grey-text pb-3">Welcome Back,{' '}
+              {user ? user?.memberPeople[0].otherNames : 'Goodness Ibenema'}</h2>
                     <div className="wel-details">
                         <span className="wel-box">
                             <p><span className="mem-id">Member ID:</span> {user ? user.memberId : 'AC2019/6924'}</p>

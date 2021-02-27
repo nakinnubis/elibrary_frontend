@@ -30,8 +30,10 @@ export default function Home() {
     const userData = await user.json();
     console.log(user.status);
     if (user.status === 200) {
-      setUser(userData);
+      setUser(userData.message);
+      window.localStorage.setItem("user",JSON.stringify(userData.message))
       setLoading(false)
+      console.log("Login: ", userData)
       router.push("/dashboard");
     } else if (user.status === 404) {
       setLoading(false)

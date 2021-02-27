@@ -304,7 +304,7 @@ h3.title {
 }
 
 .img-cont {
-    height: 150px;
+    height: auto;
     position: relative;
     display: flex;
 }
@@ -351,6 +351,7 @@ h3.title {
     border: none;
     box-shadow: 0px 7px 20px rgba(202, 203, 207, 0.5);
     border-radius: 0px 0px 6px 6px;
+    max-width: 400px;
     
 }
 .pag-col button {

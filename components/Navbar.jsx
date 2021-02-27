@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AuthContext } from '../context/AuthContext';
@@ -7,18 +7,22 @@ import { NavbarContainer } from '../styles/NavbarContainer';
 import { useWindowWidthAndHeight } from './CustomHooks';
 
 const Navbar = () => {
-  const userData = useContext(AuthContext);
-  const user = userData[0].message;
+  // const [user] = useContext(AuthContext);
   const [dropdown, setDropdown] = useState(false);
-
+  const [user, setUser] = useState({ memberPeople: [{ otherNames: "" }] });
   // use our custom hook to get the the window size
   const [width] = useWindowWidthAndHeight();
   // declare 'translate' as a state variable
   let [translate, setTranslate] = useState(true);
 
+  useEffect(() => {
+    let user = JSON.parse(window.localStorage.getItem("user"));
+    setUser(user)
+  }, [])
+
   return (
     <NavbarContainer>
-      { width > 920 ? <div className='wrapper nav'>
+      { width > 920 ? <div className='wrapper nav sticky-top'>
         <Link href='https://nape.org.ng/'>
           <a>
             <div className='logo'>
@@ -26,7 +30,6 @@ const Navbar = () => {
             </div>
           </a>
         </Link>
-
         <div className='profile-side'>
           <div className='profile-text'>
             <div className='profile-name'>
@@ -36,7 +39,7 @@ const Navbar = () => {
                 tabIndex='0'
               >
                 {' '}
-                {user ? user.memberPeople[0].otherNames : 'Goodness Ibenema'}
+                {user?.memberPeople[0].otherNames}
               </p>
               <div className={`drop-down ${dropdown ? 'show' : 'hide'}`}>
                 <ul>
@@ -51,16 +54,16 @@ const Navbar = () => {
               <Image src='/down-arrow.svg' layout='fill' />
             </div>
           </div>
-          <div className='profile-img'>
+          {/* <div className='profile-img'>
             <Image src='/profile-img.png' layout='fill' />
-          </div>
+          </div> */}
         </div>
       </div>
 
         :
 
         <>
-          <nav className='wrapper'>
+          <nav className='wrapper sticky-top'>
             <Link href='https://nape.org.ng/'>
               <a>
                 <div className='logo'>
@@ -95,7 +98,22 @@ const Navbar = () => {
                     </div>
                   </div> */}
 
+                  <div className="btn-link-custom">
+                    <a className="btn btn-link btn-sm dropdown-toggle text-secondary text-decoration-none custom-a" href="#"
+                      role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                      {user?.memberPeople[0].otherNames}
+                    </a>
+
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a className="dropdown-item drop-list" href="#">Settings</a></li>
+                      <li><a className="dropdown-item drop-list" href="#">Change Password</a></li>
+                      <li><a className="dropdown-item drop-list" href="#">Visit Website</a></li>
+                      <li><a className="dropdown-item drop-list" href="#">Logout</a></li>
+                    </ul>
+                  </div>
+
                 </div>
+
 
                 <a href="/dashboard/dsgfh" className="block" onClick={() => setTranslate(!translate)}><span className="icon-cls"><Image src='/profile-icon.svg' width="20" height="20" /></span> My Profile</a>
                 <a href="/dashboard/safdjg" className="block" onClick={() => setTranslate(!translate)}><span className="icon-cls"><Image src='/certificate.svg' width="20" height="20" /></span> Certificate</a>

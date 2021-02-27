@@ -8,7 +8,7 @@ export const NavbarContainer = styled.div`
         align-items:center;
 
         .hamburger-btn{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     position: absolute;
     top: 5px;
     width: auto;
@@ -37,7 +37,7 @@ export const NavbarContainer = styled.div`
 
 
 #sidebar-list{
-    background-color: #fff;
+    background-color: #FFFFFF;
     height: 100vh;
     width: 300px;
     position: fixed;
@@ -74,17 +74,22 @@ export const NavbarContainer = styled.div`
     padding-right: 2rem;
 }
 
+.drop-list {
+    padding: 1rem;
+    border-bottom: 1px solid grey;
+}
+
     & .first-item {
         /* outline: 2px solid green; */
         font-size: 1.2rem;
         /* max-width: 200px; */
         align-self: flex-start;
-        padding: 1rem 2rem 2rem 2rem;
-        width: 70%;
+        padding: 1rem 0 0 0.3rem;
+        width: 60%;
         /* float: left; */
         position: relative;
         /* left: 0; */
-        margin-right: 0;
+        margin-right: 1rem;
     }
 
     .block {
@@ -220,5 +225,30 @@ export const NavbarContainer = styled.div`
             }
         }
     }
+
+    .btn-link-custom {
+        margin-top: 1.5rem;
+        margin-left: 0;
+        
+
+        .custom-a {
+            font-size: 0.9rem;
+            color: #055844;
+            font-weight: bold;
+            /* outline: 2px solid red; */
+        }
+        .custom-a:focus {
+            outline: 1px solid pink;
+                border: none;
+        }
+
+        
+
+    }
+
+    a:focus, button:focus, .btn-link-custom:focus {
+                outline: none;
+                border: none;
+            }
 
 `

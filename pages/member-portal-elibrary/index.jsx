@@ -132,7 +132,7 @@ const Index = ({ data }) => {
 
             <section className="container list mb-5">
                 <p className="list-total mb-4">{`Showing 1 - ${data?.books?.length} books`}</p>
-                <div className="row row-cols-1 row-cols-lg-4 g-5 mb-2">
+                <div className="row row-cols-1 row-cols-md-4 g-5 mb-2">
 
                     {data?.books?.map(item => {
                         return (
@@ -149,7 +149,7 @@ const Index = ({ data }) => {
                                                 src={Base_Url + item.bookUrl}>
                                             </iframe>
                                         </div> */}
-                                        <img className="card-img-top img-cus" src={`${item.bookUrl.includes('.pdf') ? '/pdf-image.png' : 'doc-image.png'}`} alt="Book Image" />
+                                        <img className="card-img-top img-cus" src={`${item.bookUrl.includes('.pdf') ? '/pdf-image.png' : 'doc-image.png'}`} alt="Book Image" width='100%'/>
                                     </div>
                                     <div className="card-body d-flex flex-nowrap align-content-center align-items-center justify-content-between">
                                         <p className="card-text card-lft">{item.bookTitle}</p>
@@ -171,7 +171,7 @@ const Index = ({ data }) => {
 
             </section>
 
-            <section className="pag my-5">
+            <section className="container pag my-5">
                 <div className="row d-flex justify-content-evenly">
                     <div className="pag-col col-sm-3 my-1">
                         <button class="btn"> {">"} </button>
