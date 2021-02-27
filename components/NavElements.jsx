@@ -38,7 +38,7 @@ const NavElements = () => {
       id: 6,
       imgUrl: '/e-library.svg',
       name: 'E-Library',
-      url: '/dashboard/library',
+      url: '/member-portal-elibrary',
     },
     {
       id: 7,
@@ -65,6 +65,7 @@ const NavElements = () => {
       <div className='wrapper'>
         <div className='nav-grid'>
           {navdata.map(({ id, imgUrl, name, url }) => (
+            
             <NavLinks
               key={id}
               imgUrl={imgUrl}

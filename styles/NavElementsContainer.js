@@ -9,6 +9,10 @@ const NavElementsContainer = styled.div`
         display:grid;
         grid-template-columns:repeat(9,1fr);
     }
+
+    @media(max-width: 920px){
+        display: none;
+    }
 `
 
 

@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import MemberInfoStyles from '../styles/MemberInfoStyles';
+import Image from 'next/image';
 
 const MemberInformation = () => {
   const userData = useContext(AuthContext);
   const user = userData[0].message;
   return (
-    <MemberInfoStyles className='wrapper'>
-      <div className='member-grid'>
+    <MemberInfoStyles className='wrapper container my-5 w-100 p-0'>
+      {/* <div className='member-grid'>
         <div>
           <div>
             <h1>
@@ -21,6 +22,7 @@ const MemberInformation = () => {
               <p className='active'>Active</p>
             </div>
             <div className='messages'>
+              <Image src='/message.svg' width="20" height="20" />
               <p>0 Messages</p>
             </div>
           </div>
@@ -37,7 +39,37 @@ const MemberInformation = () => {
             <input type='submit' value='Search' className='input-btn' />
           </div>
         </form>
-      </div>
+      </div> */}
+
+
+            <div className="row row-custom">
+                <div className="col-md-6 col-custom">
+                    <h2 className="wel-h2 grey-text">Welcome Back,{' '}
+              {user ? user.memberPeople[0].otherNames : 'Goodness Ibenema'}</h2>
+                    <div className="wel-details">
+                        <span className="wel-box">
+                            <p><span className="mem-id">Member ID:</span> {user ? user.memberId : 'AC2019/6924'}</p>
+                            <button className="active">Active</button>
+                        </span>
+                        <span className="wel-msg align-items-center">
+                            {/* <img src="/message.svg" alt="Message Logo" /> */}
+                            <Image src='/message.svg' width="20" height="20" />
+                            <p className="mb-0">0 <span className="msg-span">message</span></p>
+                        </span>
+                    </div>
+                </div>
+                
+                <div className="col-md-5 col-custom">
+                    <div className="connect">
+                        <p>Connect with member</p>
+                        <div className="box">
+                            <input type="text" placeholder="Search with name or ID" />
+                            <button>Search</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
     </MemberInfoStyles>
   );
 };

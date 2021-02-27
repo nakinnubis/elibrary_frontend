@@ -2,7 +2,7 @@ import React from 'react';
 import NotificationStyles from '../styles/NotificationStyles';
 import Image from 'next/image';
 import parse from 'html-react-parser';
-const NotificationsComponent = ({ title, info }) => {
+const NotificationsComponent = ({ title, info, published }) => {
   if (info.includes('<br>')) {
     info = info.replace('<br>', '');
   }
@@ -15,7 +15,7 @@ const NotificationsComponent = ({ title, info }) => {
         <div className='content-wrapper'>{parse(info)}</div>
       </div>
       <div className='date-wrapper'>
-        <p>sept 8 2020</p>
+        <p>{published}</p>
       </div>
 
       <div className='image-wrapper'>

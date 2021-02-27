@@ -1,9 +1,11 @@
 import React from 'react';
 import NotificationListStyles from '../../styles/NotificationListStyles';
 import NotificationsComponent from '../NotificationsComponent';
+import {dateFunc} from "../../helper/dateFormatter"
 
 const NotificationListComponent = ({ response }) => {
   const notifications = response.data;
+  
   return (
     <NotificationListStyles>
       {/* <NotificationsComponent />
@@ -24,6 +26,7 @@ const NotificationListComponent = ({ response }) => {
                 ? `${notification.info.substring(0, 150)}...`
                 : notification.info
             }
+            published={dateFunc(notification.published)}
           />
         );
       })}
