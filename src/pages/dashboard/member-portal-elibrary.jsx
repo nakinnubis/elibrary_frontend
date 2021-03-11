@@ -106,7 +106,7 @@ const MemberPortalELibrary = () => {
     }
 
 
-    const whoSendYou = () =>{
+    const showModal = () =>{
         setModal({display: true})
     }
 
@@ -232,7 +232,7 @@ const MemberPortalELibrary = () => {
                                     <div className="card-body d-flex flex-nowrap align-content-center align-items-center justify-content-between">
                                         <p className="card-text card-lft">{item?.bookTitle}</p>
                                     </div>
-                                    <div onClick={() => (status === false) ? whoSendYou(): showPdf(item)} className="card-footer bg-white text-center d-flex justify-content-evenly card-foot" style={{ cursor: 'pointer' }}>
+                                    <div onClick={() => (status === false) ? showModal(): showPdf(item)} className="card-footer bg-white text-center d-flex justify-content-evenly card-foot" style={{ cursor: 'pointer' }}>
                                         <img src={Bookicon} width='20' height='20' className="card-ft-left" alt="Logo" />
                                         <small className="card-ft-right align-self-center" >Start reading</small>
 
