@@ -16,6 +16,9 @@ const LibraryInfo = () => {
         <div className='white-bg'>
           <p>Author</p>
         </div>
+        {/* <div className="white-bg">
+          <p>Upload</p>
+        </div> */}
         <div className='no-bg'>
           <p>English</p>
         </div>

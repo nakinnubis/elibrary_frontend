@@ -32,19 +32,19 @@ export const getStaticProps = async () => {
 
 };
 
-export const membershipStatus = async () => {
-    const res = await fetch(
-        'http://46.101.62.161:5000/api/AnnualDue/CheckMembershipStatus',
-        {
-            method: 'GET',
-            headers: {
-                ApiKey:
-                    'dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c',
-            },
-        }
-    );
-    return res.json();
-};
+// export const membershipStatus = async () => {
+//     const res = await fetch(
+//         'http://46.101.62.161:5000/api/AnnualDue/CheckMembershipStatus',
+//         {
+//             method: 'GET',
+//             headers: {
+//                 ApiKey:
+//                     'dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c',
+//             },
+//         }
+//     );
+//     return res.json();
+// };
 
 
 const stopScroll = (e) => {
@@ -59,7 +59,7 @@ const MemberPortalELibrary = () => {
     let ref = useRef()
     const [data, setdata] = useState({ books: [""] });
     const [status, setStatus] = useState("");
-    const [input, setInput] = useState("")
+    const [searchBook, setSearchBook] = useState("");
 
     useEffect(() => {
         (async () => {
@@ -119,17 +119,34 @@ const MemberPortalELibrary = () => {
         console.log(pdf);
         setPdf({ ...pdf, display: !pdf.display })
     }
-    let filtereditems = data.books.filter((item) => item.thumbnailUrl !== null)
+    const filtereditems = data.books.filter((item) => item.thumbnailUrl !== null)
+    const availableBooks = filtereditems.filter((val) => {
+                        if (searchBook == ""){
+                            return val
+                        }else if (val.bookTitle.toLowerCase().includes(searchBook.toLowerCase())|| val.bookAuthor.toLowerCase().includes(searchBook.toLowerCase())){
+                          return val  
+                        }
+                    })
    
     const handleChange = (e) =>{
         // e.preventDefault();
-        setInput(e.target.value);
-    //     if(input.length > 0){
+        setSearchBook(e.target.value);
+        // if(searchBook.length > 0){
 
+            filtereditems = filtereditems?.filter(book => book.bookTitle.toLowerCase().includes(searchBook.toLowerCase())|| book.bookAuthor.toLowerCase().includes(searchBook.toLowerCase()))
+            console.log(filtereditems);
     //   filtereditems =  filtereditems.map(book =>{
     //             if(book.bookTitle == input) return book
     //         })
-    //     }
+//     const [searchField, setSearchField] = useState('')
+// const filteredBook = books?.filter(book => book.name.toLowerCase().includes(searchField.toLowerCase())
+//     || book.book_type.toLowerCase().includes(searchField.toLowerCase())
+// || book.book_type.toLowerCase().includes(searchField.toLowerCase())
+//   )
+// <form>
+//           <input type="text" name="search" placeholder="Search by name, type" onChange={e => setSearchField(e.target.value)} />
+//         </form>
+        // }
 
     //     console.log(filtereditems);
     };
@@ -155,13 +172,13 @@ const MemberPortalELibrary = () => {
                         <div className={`search-wrapper my-3 p-2`}>
                             {/* <Image className="search-icon" src="/search-icon.svg" alt="Search Icon"/> */}
                             <img className={`search-icon`} src={Searchicon} alt="Search Icon" />
-                            <input type="text" className="search-input w-75" placeholder="Search books, author, keywords" onChange={handleChange} value={input}/>
+                            <input type="text" className="search-input w-75" placeholder="Search books, author, keywords" onChange={(e) => {setSearchBook(e.target.value)} } />
                         </div>
                     </div>
                     <div className="col-md-7">
                         <div className="filter-custom my-3 p-2">
                             <button type="button" className="btn btn-primary books px-3 mb-1">
-                                Books <span className="badge bg-dark badge-custom">{filtereditems.length}</span>
+                                Books <span className="badge bg-dark badge-custom">{availableBooks.length}</span>
                                 <span className="visually-hidden">unread messages</span>
                             </button>
                             <button type="button" className="btn btn-primary categories px-3 mb-1">
@@ -170,6 +187,10 @@ const MemberPortalELibrary = () => {
                             </button>
                             <button type="button" className="btn btn-primary authors px-3 mb-1">
                                 Authors <span className="badge badge-cat">{getTotalAuthors(data)}</span>
+                                <span className="visually-hidden">unread messages</span>
+                            </button>
+                            <button type="button" className="btn btn-primary categories px-3 mb-1">
+                                Upload <span className="badge badge-cat">&#8593;</span>
                                 <span className="visually-hidden">unread messages</span>
                             </button>
                             <div className="btn-link-custom mb-1">
@@ -204,15 +225,18 @@ const MemberPortalELibrary = () => {
 
 
             <section className="container list mb-5">
-                <p className="list-total mb-4">{`Showing 1 - ${data?.books?.length} books`}</p>
+                <p className="list-total mb-4">{`Showing 1 - ${availableBooks?.length} books`}</p>
                 <div className="row row-cols-1 row-cols-md-4 g-5 mb-2">
-                    
-                    {filtereditems.map((item) => {
+                    {
+                        (availableBooks.length < 1) &&
+                        <div>No Book Matched your search</div>
+                    }
+                    {availableBooks.map((item) => {
 
                         
                         return (
                             <div className="col" key={item.objectId}>
-                                {item?.thumbnailUrl && 
+                                {item && 
                                 <div className="card h-100 card-shadow">
                                     <div className="img-cont my-auto" onScroll={stopScroll}>
                                         {/* <div className={pdf.display ? Styleframe.wrapper : Styleframe.smallFrame} ref={ref}>
@@ -238,6 +262,7 @@ const MemberPortalELibrary = () => {
 
                                     </div>
                                 </div> }
+                                
                             </div>
                         )
                                     
