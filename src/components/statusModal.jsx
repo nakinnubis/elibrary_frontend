@@ -33,9 +33,12 @@ export default function ModalViewer({ display = false, changeModalDisplay }) {
         src="snippet.html"> */}
             {/* <h1>Oops!!!</h1> */}
       {/* </embed> */}
-     <h1>Oops!!!</h1>
-     <h2>You are not an active Member</h2>
-     <h2>Please pay your annual dues <a href="#">here</a></h2>
+      <div className={"modalcard-top"}>
+        <h1>Why don’t I have access to this book?</h1>
+        <h5>X</h5>
+      </div>
+      <p>This is because your membership Subscription is due. Please pay your annual dues to continue reading.<br></br>Thank You</p>
+     
 
     </div>) :
     <></>
