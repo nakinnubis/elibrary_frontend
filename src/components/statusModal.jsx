@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRef } from 'react'
-import "../styles/iframe.css"
+import "../styles/modal.css"
 
 // let Base_Url = "https://rockcodeafrica.org/"
 

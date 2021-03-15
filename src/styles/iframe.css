@@ -1,58 +1,8 @@
-.modalcard{
-  font-family: Poppins;
-  color: #777777;
-  position: fixed;
-  z-index: 99999;
-  top:50%;
-  /* bottom:10%; */
-  left:50%;
-  /* right:10%; */
-  transform: translate(-50%, -50%);
-  width: 80vw;
-  height: 50vh;
-  padding:2% 5%;
-  background-color: #E5E5E5;
-  overflow: hidden;
-  border-radius: .5rem;
-  overflow: hidden;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
-}
 
-.modalcard-top{
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #C4C4C4;
-  padding: 2rem 0;
-  /* margin: 2rem, 0; */
-}
-
-.modalcard-top h1 {
-  
-  /* font-style: normal; */
-  font-weight: 800;
-  font-size: 1.5rem;
-  
-}
-.modalcard-top h5 {
-  background: #075F49;
-  padding: .5rem;
-  color: #FFFFFF;
-  font-weight: 800;
-  cursor: pointer
-
-}
-.modalcard p {
-  padding-top: 2rem;
-  line-height: 2rem;
-}
+/* ////////////////////////////////// */
 
 
-
-
-
+/* //////////////////////////////////////// */
 .wrapper-frame{
   display: flex;
   justify-content: center;

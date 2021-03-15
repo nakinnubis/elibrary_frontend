@@ -307,15 +307,26 @@ h3.title {
     color: #777777;
 }
 
+.card-img-top {
+    width: 80%;
+    height: 100%;
+}
+.card-hover{
+    { transition: all .3s ease-in-out; }
+}
+ .card-hover:hover {
+     transform: scale(1.1);
+ }
 .img-cont {
     height: 150px;
     position: relative;
     display: flex;
+    justify-content: center;
 }
 
-.img-cus {
-    height: inherit;
-}
+// .img-cus {
+//     height: inherit;
+// }
 
 .btn-cus {
     display: block;

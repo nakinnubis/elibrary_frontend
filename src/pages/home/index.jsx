@@ -15,6 +15,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [memberStatus, setMemberStatus] = useState("")
   const {push} = useHistory();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true)
