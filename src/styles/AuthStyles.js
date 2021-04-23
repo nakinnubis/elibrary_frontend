@@ -67,6 +67,24 @@ export const MembershipContainer = styled.div`
                 padding:15px 20px;
             }
         }
+        button{
+            
+            text-align:center;
+            &.white-bg{
+                background:#fff;
+                color:#777777;
+                font-size:14px;
+                font-weight:bold;
+                padding:15px 20px;
+            }
+            &.black-bg{
+                background:rgba(119,119,119,0.5);
+                color:#fff;
+                font-size:14px;
+                font-weight:bold;
+                padding:15px 20px;
+            }
+        }
     }
     .terms-and-conditions-div{
         background:rgba(119,119,119,0.3);

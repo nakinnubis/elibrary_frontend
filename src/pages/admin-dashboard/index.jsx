@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
-import CardListComponent from '../../components/CardListComponent';
+import AdminCardListComponent from '../../components/AdminCardListComponent';
 import NotificationListComponent from '../../components/e-library/NotificationListComponent';
 import Heading from '../../components/Heading';
 import { AuthContext } from '../../context/AuthContext';
@@ -35,8 +35,8 @@ const Index = () => {
   return (
     <DashboardStyles className='wrapper'>
       <Heading heading='Quick Actions' />
-      <CardListComponent />
-      <Heading heading='Recent Notifications' />
+      <AdminCardListComponent />
+      <Heading heading='E-Library Activities' />
       <NotificationListComponent response={data} />
     </DashboardStyles>
   );

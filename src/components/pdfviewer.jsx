@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useRef } from 'react'
 import "../styles/iframe.css"
 
-let Base_Url = "https://rockcodeafrica.org/"
-
+// let Base_Url = "https://rockcodeafrica.org/"
+let Base_Url = "http://102.130.127.119:80/"
 
 export default function Pdfviewer({ url = "", display = false, changeDisplay }) {
   let ref = useRef()
@@ -28,7 +28,8 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
       <embed
         title="Inline Frame Example"
         className={"iframe-display"}
-        src={Base_Url + url}>
+        // src={Base_Url + url}>
+        src = {`https://docs.google.com/gview?url=${Base_Url + url}&embedded=true`}>
       </embed>
     </div>) :
     <></>

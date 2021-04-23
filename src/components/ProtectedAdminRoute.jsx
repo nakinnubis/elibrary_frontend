@@ -1,14 +1,14 @@
 import React, { PropsWithChildren, useState } from "react";
 // import cookies from "js-cookie";
 import { Redirect, Route, RouteProps } from "react-router-dom";
-import Layout from "./Layout";
+import AdminLayout from "./AdminLayout";
 
 
-export default function ProtectedRoute({ children, ...rest }) {
+export default function ProtectedAdminRoute({ children, ...rest }) {
   //   const [auth] = useState(!!cookies.get("auth"));
 
   // TODO: switch to auth context
-  let auth = global.localStorage.getItem('user')
+  let auth = global.localStorage.getItem('admin')
 
   return (
     <Route
@@ -17,7 +17,7 @@ export default function ProtectedRoute({ children, ...rest }) {
         if (!auth) {
           return <Redirect to="/login" />;
         }
-        return <Layout>{children};</Layout>;
+        return <AdminLayout>{children};</AdminLayout>;
       }}
     />
   );

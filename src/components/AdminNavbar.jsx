@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
 import { NavbarContainer } from '../styles/NavbarContainer';
 import { useWindowWidthAndHeight } from './CustomHooks';
 import Logo from '../assets/logo.svg';
@@ -16,18 +15,17 @@ import OnlinePayment from '../assets/online-payment.svg';
 import Payment from '../assets/payments.svg';
 import Certificate from '../assets/certificate.svg';
 
-const Navbar = () => {
-  // const [user] = useContext(AuthContext);
+const AdminNavbar = () => {
   const [dropdown, setDropdown] = useState(false);
-  const [user, setUser] = useState({ memberPeople: [{ otherNames: "" }] });
+  const [admin, setAdmin] = useState("");
   // use our custom hook to get the the window size
   const [width] = useWindowWidthAndHeight();
   // declare 'translate' as a state variable
   let [translate, setTranslate] = useState(true);
 
   useEffect(() => {
-    let user = JSON.parse(global.localStorage.getItem("user"));
-    setUser(user)
+    let user = JSON.parse(global.localStorage.getItem("admin"));
+    setAdmin(user)
   }, [])
 
   return (
@@ -48,14 +46,14 @@ const Navbar = () => {
                 tabIndex={0}
               >
                 {' '}
-                {user?.memberPeople[0].otherNames}
+                {admin?.username}
               </p>
               <div className={`drop-down ${dropdown ? 'show' : 'hide'}`}>
                 <ul>
                   <li>Settings</li>
                   <li>Change Password</li>
                   <li>Visit Website</li>
-                  <li>Logout</li>
+                  <li onClick={()=> console.log("clear")}>Logoutooo</li>
                 </ul>
               </div>
             </div>
@@ -103,19 +101,19 @@ const Navbar = () => {
                       <a className="dropdown-item" href="#">Another action</a>
                       <a className="dropdown-item" href="#">Something else here</a>
                     </div>
-                  </div> */}
+                  </div> */} 
 
-                  <div className="btn-link-custom">
+                  < div className="btn-link-custom">
                     <a className="btn btn-link btn-sm dropdown-toggle text-secondary text-decoration-none custom-a" href="#"
                       role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                      {user?.memberPeople[0].otherNames}
+                      {admin?.username}
                     </a>
 
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <li><a className="dropdown-item drop-list" href="#">Settings</a></li>
                       <li><a className="dropdown-item drop-list" href="#">Change Password</a></li>
                       <li><a className="dropdown-item drop-list" href="#">Visit Website</a></li>
-                      <li><a className="dropdown-item drop-list" onClick={()=>{window.localStorage.clear()}} href="#">Logout</a></li>
+                      <li><a className="dropdown-item drop-list" onClick={()=> window.localStorage.clear()} href="#">Logout</a></li>
                     </ul>
                   </div>
 
@@ -145,4 +143,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AdminNavbar;
