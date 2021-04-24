@@ -4,10 +4,32 @@ import styled from 'styled-components';
 
 
 export const AdminAuthStyles = styled.div`
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    // display:flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+
+    .form-container{
+        outline: 3px solid yellow;
+        Width:80vw;
+        height: 100vh;
+        margin: 10rem auto 5rem auto;
+    }
+    .member-login{
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 72px;
+        
+
+
+        color: #777777;
+
+    }
+    .pwd-control{
+        color:red;
+        cursor: default;
+    }
+    
 `
 
 
@@ -380,10 +402,18 @@ export const NavWrapper = styled.div`
     }
 `
 export const InputContainer = styled.form`
-outline: 1px solid red;
+// outline: 1px solid red;
 margin: 0 auto;
-max-width: 50rem;
+max-width: 40rem;
 // position: relative;
+
+.input-setting{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    margin: 1rem 0;
+    
+}
  .error{
         margin:20px 0;
         p{
@@ -411,16 +441,22 @@ max-width: 50rem;
             padding:15px 0;
             font-size:20px;
             margin-top:20px;
+            height:4rem;
         }
     .input-field{
         background:#fff;
         padding:15px;
         border-radius:5px;
         padding-left:20px;
+        height: 8.37rem;
+        box-shadow: 0px 20px 70px rgba(0, 0, 0, 0.06);
+
         label{
             font-size:14px;
+
             
         }
+        
         .input-form-wrapper{
             display:grid;
             grid-template-columns:90% 10%;

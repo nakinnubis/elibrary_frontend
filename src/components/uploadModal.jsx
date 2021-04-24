@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Modal, Button } from 'react-bootstrap'
 import PdfImage from '../assets/pdf-image.png'
 import DocImage from '../assets/doc-images.png'
-import FormViewer from './formModal'
+// import FormViewer from './formModal'
 import "../styles/modal.css"
 // import { useState } from 'react';
 
@@ -64,7 +64,7 @@ export default function UploadViewer (){
                 backdrop="static"
                 keyboard={false}
                 style={{zIndex:2000}}>
-                <FormViewer></FormViewer>
+                {/* <FormViewer></FormViewer> */}
                 </Modal>
           }
     </>)

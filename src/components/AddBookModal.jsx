@@ -63,7 +63,7 @@ const handleTagSubmit=(newValue, actionMeta)=>{
   }
   
 const testOption = [{label:"thinking", value:"shame"}, {label:"thinking", value:"shame"},{label:"thinking", value:"shame"},{label:"eating",value:"good" }]
-  const changeKeyValue = (data)=>{
+const changeKeyValue = (data)=>{
     // data["value"] = data["tagID"];
     data["label"] = data["tagName"];
     // delete (data["tagID"], data["tagName"])
@@ -142,13 +142,14 @@ const testOption = [{label:"thinking", value:"shame"}, {label:"thinking", value:
         });
         const tagResult = await response.json()
       setOption(tagResult.data.map(changeKeyValue));
+      // setOption(tagResult);
       // console.log("inside fetchtag",option);
     } catch(error){
       // console.log(error);
     }
   };
-
-
+  
+  // const newOption = option.data.map(changeKeyValue)
   useEffect(async ()=>{
     
     await fetchfolders();
@@ -349,6 +350,7 @@ fetch(props.url, requestOptions)
              <CreatableSelect
                 isMulti
                 onChange={handleTagSubmit}
+                // options= {newOption}
                 options= {option}
 
               />

@@ -17,7 +17,7 @@ export default function Admin() {
   const [loading, setLoading] = useState(false);
   const [memberStatus, setMemberStatus] = useState("");
   const history = useHistory();
-  const [loginType, setLoginType] = useState("Member");
+  // const [loginType, setLoginType] = useState("Member");
   const [activeState, setActiveState] = useState(false);
   const [btnBg, setBtnBg] = useState("black-bg");
   const [individualBg, setIndividualBg] = useState("white-bg");
@@ -62,18 +62,7 @@ export default function Admin() {
         }
     }).catch(err => { console.log({err})})
      
-    //   window.localStorage.setItem("user",JSON.stringify(userData.data))
-    //   setLoading(false)
-    //   console.log("Login: ", userData)
-      
-
-    // }).catch((err) => {
-    //   // setLoading(false);
-    //   setIsError(true);
-    //   console.log({err})
-    // })
-
-   
+     
   }
   return (
       <>
@@ -81,6 +70,7 @@ export default function Admin() {
     {/* <div style={{outline:"3px solid yellow", height: "100vh"}}> */}
 
         {/* <FormContainer> */}
+        <AdminAuthStyles>
         <NavWrapper>
           <div className="wrapper flex">
             <div>
@@ -88,7 +78,7 @@ export default function Admin() {
             </div>
           </div>
         </NavWrapper>
-        <div style={{outline:"3px solid yellow", maxWidth:"500px", height: "100vh", margin: "10rem auto 5rem auto"}}>
+        <div className="form-container" style={{}}>
         
             <div className="text-center form-body">
           
@@ -99,7 +89,7 @@ export default function Admin() {
             <p>Wrong email address or password. Forgot your password?</p>
           </div>
           <div className="input-field">
-            <label>{loginType} ID or Email</label>
+            <label>Email</label>
             <div className="input-form-wrapper">
               <input type="text" placeholder="Enter your Id or Email address" value={email} onChange={(e) => setemail(e.target.value)} />
               <div className="input-image-wrapper">
@@ -112,9 +102,10 @@ export default function Admin() {
 
           </div>
           <div className="input-field mt-40">
-            <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+            {/* <div className="input-flex" style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}> */}
+               <div className="input-form-wrapper">
                 <label>Password</label>
-                <p onClick={handleClickShowPassword}>{values.showPassword ?"HIDE" : "SHOW"}</p>
+                <p className="pwd-control" onClick={handleClickShowPassword}>{values.showPassword ?"HIDE" : "SHOW"}</p>
             </div>
             <div className="input-form-wrapper">
               <input type={values.showPassword ? "text" : "password"} placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -123,9 +114,9 @@ export default function Admin() {
               </div>
             </div>
           </div>
-          <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+          <div className="input-setting">
             <div>
-                <input type="checkbox" checked={isChecked} name="lsRememberMe" onChange={onChangeCheckbox} />
+                <input clasName=""   type="checkbox" checked={isChecked} name="lsRememberMe" onChange={onChangeCheckbox} />
                 <label>Keep me logged in</label>
             </div>
             <Link to="/">RESET PASSWORD</Link>
@@ -133,10 +124,11 @@ export default function Admin() {
           <input type="submit" value="Submit" className="submit-btn" />
         
         </InputContainer>
-        <div style={{outline:"2px solid blue"}} className="text-center">Don’t have access to our E-library? Sign Up here</div>
+        {/* <div style={{outline:"2px solid blue"}} className="text-center">Don’t have access to our E-library? Sign Up here</div> */}
         
      
       </div>
+      </AdminAuthStyles>
     </>
   )
 }
