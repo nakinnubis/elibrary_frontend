@@ -39,7 +39,7 @@ const MemberPortalELibrary = () => {
   
   useEffect(() => {
     let memStatus = JSON.parse(global.localStorage.getItem("memStatus"));
-    if (!memStatus) {
+    if (memStatus) {
       setStatus(true);
     }
   }, []);
