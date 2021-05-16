@@ -20,7 +20,7 @@ const NotificationsComponent = ({ title, info }) => {
       </div>
 
       <div className='image-wrapper'>
-        <img src={Menu} />
+        <img src={Menu} alt="" />
       </div>
     </NotificationStyles>
   );

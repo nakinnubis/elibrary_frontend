@@ -39,7 +39,7 @@ const Index = () => {
       <Heading heading='Recent Notifications' />
       <NotificationListComponent response={data} />
     </DashboardStyles>
-  );
-};
+  )
+}
 
 export default Index;

@@ -1,28 +1,43 @@
 import { useHistory } from "react-router-dom";
+import "./styles.css";
 
-export const ManageComponents=(props)=>{
-    let history = useHistory();
+export const ManageComponents = (props) => {
+  let history = useHistory();
 
-    return (
-        <>
-        
-            <div className="" style={{display:"flex", flexDirection:"row", outline:"2px solid red", justifyContent:"space-between",alignItems:"center"}}>
-                {/* <div className="row"> */}
-                <div style={{display:"flex", flexDirection:"row", outline:"2px solid blue", }}>
-                    <div onClick={()=>{history.goBack()}} style={{fontSize:"2rem",display:"flex", alignItems:"center",}}><span >&#8592;</span><span style={{fontSize:"1.2rem", paddingLeft:"0.5rem"}}>Back</span></div>
-                    <p style={{marginLeft:"2rem", fontWeight: "800",fontSize: "24px",lineHeight: "36px"}}>Manage Books</p>
+  return (
+    <>
+      <div className="header__container">
+        {/* <div className="row"> */}
+        <div className="header__container__left">
+          <div
+            onClick={() => {
+              history.goBack();
+            }}
+            style={{ fontSize: "2rem", display: "flex", alignItems: "center", cursor:"pointer" }}
+          >
+            <span className="back__arrow">&#8592;</span>
+            <span className="back__button">Back</span>
+          </div>
+          <p className="back__button__title">Manage Books</p>
+        </div>
+        <div className="add__button__container">
+          <button className="add__button" onClick={props.openFolder}>
+            <span className="add__button__span">&#x2B;</span>
+            Add Folder
+          </button>
+          <button className="add__button" onClick={props.openCat}>
+            <span className="add__button__span">&#x2B;</span>Add Category
+          </button>
+          <button className="add__button" onClick={props.openTag}>
+            <span className="add__button__span">&#x2B;</span>Add Tag
+          </button>
+          <button className="add__button" onClick={props.openBook}>
+            <span className="add__button__span">&#x2B;</span>Add Book
+          </button>
 
-                </div>
-                <div>
-                    <button style={{background: "#075F49",borderRadius: "5px", color:"white", height:"3rem", border:"none", margin:"0 0.5rem"}}onClick={props.openFolder}>Add Folder</button>
-                    <button onClick={props.openCat}>Add Category</button>
-                    <button onClick={props.openTag}>Add Tag</button>
-                    <button onClick={props.openBook}>Add Book</button>
-                    
-                    
-                {/* </div> */}
-                </div>
-            </div>
-        </>
-    )
-}
+          {/* </div> */}
+        </div>
+      </div>
+    </>
+  );
+};

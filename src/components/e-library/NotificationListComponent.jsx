@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import NotificationListStyles from '../../styles/NotificationListStyles';
 import NotificationsComponent from '../NotificationsComponent';
 import { dateFunc } from "../../helper/dateFormatter"
@@ -7,10 +6,6 @@ const NotificationListComponent = ({ response }) => {
   const notifications = response.data;
   return (
     <NotificationListStyles>
-      {/* <NotificationsComponent />
-      <NotificationsComponent />
-      <NotificationsComponent />
-      <NotificationsComponent /> */}
       {notifications?.map((notification) => {
         return (
           <NotificationsComponent

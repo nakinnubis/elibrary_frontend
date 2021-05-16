@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminCardListComponent from '../../components/AdminCardListComponent';
 import NotificationListComponent from '../../components/e-library/NotificationListComponent';
 import Heading from '../../components/Heading';
@@ -22,8 +22,7 @@ import DashboardStyles from '../../styles/DashboardStyles';
 };
 
 const Index = () => {
-  // const userData: any = useContext(AuthContext);
-  // const user = userData[0].message;
+
   const [data, setdata] = useState([]);
 
   useEffect(() => {

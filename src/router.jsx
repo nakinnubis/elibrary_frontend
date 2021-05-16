@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Library from "./pages/dashboard/library";
 import Dashboard from "./pages/dashboard";
 import MemberPortalELibrary from "./pages/dashboard/member-portal-elibrary";
-import Home from "./pages/home";
+import Home from "./pages/home/home";
+import MemLogin from "./pages/home";
 import Admin from "./pages/home/admin"
 import ProtectedRoute from "./components/ProtecteRoute";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
@@ -29,7 +30,7 @@ export default function Routes() {
         <ProtectedAdminRoute path="/admin-dashboard/manage-books">
           <ManageBooks/>
         </ProtectedAdminRoute>
-        <Route path="/login" component={Home} />
+        <Route path="/login" component={MemLogin} />
         <Route exact path="/" component={Home} />
         <Route path="/admin" component={Admin} />
         

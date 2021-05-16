@@ -16,24 +16,19 @@
   background-color: #E5E5E5;
   overflow: hidden;
   border-radius: .5rem;
-  overflow: hidden;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  
+  
 }
-/* @keyframes animatezoom{
-    0% {
-        transform: scale(1,1);
-    }
-    50% {
-        /* transform: scale(1.2,1.2); */
-    /* } */ 
-    /* 100% {
-        transform: scale(1,1);
-    } */
-/* } */
-/* w3-animate-zoom {animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}} */
+.homemodalcard{
+  font-family: Poppins;
+  color: #777777;
+  height: 50vh;
+  padding:2% 5%;
+  background-color: #E5E5E5;
+  overflow: hidden;
+  border-radius: .5rem;
+}
+
 .modalcard-top{
   display: flex;
   justify-content: space-between;
@@ -57,7 +52,10 @@
   cursor: pointer
 
 }
-.modalcard p {
+.modalcard p, .homemodalcard p {
   padding-top: 2rem;
   line-height: 2rem;
+}
+.link{
+  color: #075F49;
 }

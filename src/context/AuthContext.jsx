@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction, useState } from "react";
+import React, {useState } from "react";
 
 let setUse = () => { }
 export const AuthContext = React.createContext([{}, setUse]);

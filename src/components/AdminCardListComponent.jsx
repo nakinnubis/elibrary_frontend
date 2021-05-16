@@ -12,11 +12,8 @@ const AdminCardListComponent = () => {
   return (
     <CardListStyles>
       <AdminCardComponent img={Cash} title='Manage Member' />
-    <Link to="/admin-dashboard/manage-books">
-      <AdminCardComponent img={Directory} title='Manage Books' />
-    </Link>
-      {/* <AdminCardComponent img={Access} title='Access Bulletin' /> */}
-      {/* <CardComponent img={News} title='NAPE news' /> */}
+      <AdminCardComponent img={Directory} title='Manage Books' link = "/admin-dashboard/manage-books" />
+
     </CardListStyles>
   );
 };

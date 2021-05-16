@@ -1,6 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
-
-
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -65,8 +63,15 @@ const GlobalStyles = createGlobalStyle`
     .wrapper{
         margin:0 auto;
         width:85%;
+        
+        @media(max-width: 768px) {
+        width: 100%;
+        padding: 2rem;
     }
 
-`
+    }
+
+    
+`;
 
 export default GlobalStyles;

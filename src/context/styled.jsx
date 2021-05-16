@@ -1,13 +1,13 @@
-import { FC } from "react"
-import { ThemeProvider } from "styled-components"
-import GlobalStyles from "../styles/GlobalStyles"
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "../styles/GlobalStyles";
 
 const Theme = function ({ children }) {
-
-    return <ThemeProvider theme={{}}>
-        <GlobalStyles />
-        {children}
+  return (
+    <ThemeProvider theme={{}}>
+      <GlobalStyles />
+      {children}
     </ThemeProvider>
-}
+  );
+};
 
-export default Theme
+export default Theme;

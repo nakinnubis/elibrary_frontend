@@ -4,7 +4,7 @@ import { dateFunc } from "../helper/dateFormatter";
 import "./styles.css";
 import Menu from "../assets/menu.svg";
 
-export const BookListComponent = (data) => {
+export const BookListComponentAdmin = (data) => {
   const bookLists = data.data || [];
   return (
     <NotificationListStyles>
@@ -21,11 +21,11 @@ export const BookListComponent = (data) => {
         <tbody>
           {bookLists?.map((bookList) => {
             return (
-              <tr key={bookList.documentid}>
-                <td>{bookList.documentid}</td>
-                <td>{bookList.title}</td>
-                <td>{bookList.active ? "Active" : "Inactive"}</td>
-                <td>{dateFunc(bookList.uploadDate)}</td>
+              <tr key={bookList.id}>
+                <td>{bookList._id}</td>
+                <td>{bookList._source.title}</td>
+                <td>{bookList._source.active ? "Active" : "Inactive"}</td>
+                <td>{dateFunc(bookList._source.uploaddate)}</td>
                 <td>
                   <img src={Menu} alt="" />
                 </td>

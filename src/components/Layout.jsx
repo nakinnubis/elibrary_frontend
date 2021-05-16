@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import MemberInformation from './MemberInformation';
 import Navbar from './Navbar';
 import NavElements from './NavElements';
