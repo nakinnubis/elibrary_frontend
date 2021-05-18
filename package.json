@@ -17,6 +17,7 @@
     "dotenv": "^8.2.0",
     "html-react-parser": "^1.2.4",
     "material-ui-chip-input": "^2.0.0-beta.2",
+    "query-string": "^7.0.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.0",
     "react-dom": "^17.0.1",

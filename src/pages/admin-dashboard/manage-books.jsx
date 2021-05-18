@@ -15,7 +15,8 @@ import { BookListComponentAdmin } from "../../components/BookListComponentAdmin"
 import SuccessModal from "../../components/SuccessModal";
 import Pagination from "react-js-pagination";
 import axios from "axios";
-
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ManageBooks = () => {
@@ -24,12 +25,17 @@ const ManageBooks = () => {
   const [modalFolderShow, setFolderModalShow] = React.useState(false);
   const [modalCategoryShow, setCategoryModalShow] = React.useState(false);
   const [modalTagShow, setTagModalShow] = React.useState(false);
-  const [user, setUser] = useState("admin");
+  const [user, setUser] = useState("");
   const [page, setPage] = useState(0)
   const [pageSize, setPageSize] = useState(12)
   const [goTo, setGoto] = useState(1);
   const [activePage, setActivePage] = useState(1);
   const baseUrl = " https://1b9c41ffd051.ngrok.io/";
+  
+  
+  const { search } = useLocation();
+  const { userName } = queryString.parse(search)
+
   const openCat = () => {
     setCategoryModalShow(true);
   };
@@ -71,8 +77,8 @@ const ManageBooks = () => {
   useEffect(async () => {
     const bookDetails = await booKdata();
     setData(bookDetails);
-    let admin = JSON.parse(global.localStorage.getItem("admin"));
-    setUser(admin.username);
+    setUser(userName);
+    
   }, []);
    const handlePagination = pageNumber => {
     axios

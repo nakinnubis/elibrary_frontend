@@ -11,7 +11,8 @@ import Searchicon from "../../assets/search-icon.svg";
 import { Modal, Button } from "react-bootstrap";
 import Pagination from "react-js-pagination";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 const stopScroll = e => {
   e.preventDefault();
@@ -34,22 +35,28 @@ const MemberPortalELibrary = () => {
   const [activePage, setActivePage] = useState(1);
   const [TotalBooks, SetTotalBooks] = useState(0);
   
+  
+  const { search } = useLocation()
+  const { memberType, isFinanciallyUpdated } = queryString.parse(search)
+  console.log("iamsearch", search, memberType, isFinanciallyUpdated)
+  console.log("hi")
 
-  let member= JSON.parse(global.localStorage.getItem("user"))
+  // let member= JSON.parse(global.localStorage.getItem("user"))
   
   useEffect(() => {
-    let memStatus = JSON.parse(global.localStorage.getItem("memStatus"));
-    if (memStatus) {
+    // let memStatus = JSON.parse(global.localStorage.getItem("memStatus"));
+    console.log("hi")
+    if (isFinanciallyUpdated) {
       setStatus(true);
     }
   }, []);
 
   const getData = async () => {
     let url =""
-    if (member.memberType == 1){
+    if (parseInt(memberType) == 1){
       url = "MembersOnlyDocumentListing"
     }
-    else{
+    if (parseInt(memberType) == 2){
       url ="CorporateBodiesDocumentListing"
     }
     try {
@@ -85,7 +92,7 @@ const MemberPortalELibrary = () => {
           headers: {
             ApiKey:
               "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c",
-            MemberType: parseInt(member.memberType)
+            MemberType: parseInt(memberType)
             
           }
         }
@@ -163,10 +170,10 @@ const MemberPortalELibrary = () => {
 
   const handlePagination = pageNumber => {
     let url =""
-    if (member.memberType == 1){
+    if (parseInt(memberType) == 1){
       url = "MembersOnlyDocumentListing"
     }
-    else{
+    if (parseInt(memberType) == 2){
       url ="CorporateBodiesDocumentListing"
     }
     axios
@@ -192,10 +199,10 @@ const MemberPortalELibrary = () => {
 
   const handleGoTo = () => {
     let url =""
-    if (member.memberType == 1){
+    if (parseInt(memberType) == 1){
       url = "MembersOnlyDocumentListing"
     }
-    else{
+    if (parseInt(memberType) == 2){
       url ="CorporateBodiesDocumentListing"
     }
     axios

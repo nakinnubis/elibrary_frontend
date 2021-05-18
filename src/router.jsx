@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useLocation} from "react-router-dom";
 import Library from "./pages/dashboard/library";
 import Dashboard from "./pages/dashboard";
 import MemberPortalELibrary from "./pages/dashboard/member-portal-elibrary";
@@ -12,24 +12,25 @@ import ManageBooks from "./pages/admin-dashboard/manage-books";
 import MyBooks from "./pages/dashboard/my-books";
 
 export default function Routes() {
+  
   return (
     <Router>
       <Switch> 
         <ProtectedRoute  exact path="/dashboard">
           <Dashboard />
         </ProtectedRoute>
-        <ProtectedRoute path="/dashboard/member-portal-elibrary">
+        <Route path="/dashboard/member-portal-elibrary">
           <MemberPortalELibrary />
-        </ProtectedRoute>
-        <ProtectedRoute path="/dashboard/my-books">
+        </Route>
+        <Route path="/dashboard/my-books">
           <MyBooks/>
-        </ProtectedRoute>
+        </Route>
         <ProtectedAdminRoute exact path="/admin-dashboard">
           <AdminDashboard/>
         </ProtectedAdminRoute>
-        <ProtectedAdminRoute path="/admin-dashboard/manage-books">
+        <Route path="/admin-dashboard/manage-books">
           <ManageBooks/>
-        </ProtectedAdminRoute>
+        </Route>
         <Route path="/login" component={MemLogin} />
         <Route exact path="/" component={Home} />
         <Route path="/admin" component={Admin} />

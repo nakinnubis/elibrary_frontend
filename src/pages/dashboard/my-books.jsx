@@ -9,6 +9,8 @@ import AddFolderModal from "../../components/AddFolderModal";
 import AddTagModal from "../../components/AddTagModal";
 import { ManageComponents } from "../../components/AddComponents";
 import { BookListComponent } from "../../components/BookListComponent";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 const MyBooks = () => {
   const [data, setdata] = useState([]);
@@ -17,9 +19,14 @@ const MyBooks = () => {
   const [modalCategoryShow, setCategoryModalShow] = React.useState(false);
   const [modalTagShow, setTagModalShow] = React.useState(false);
 
-  const user = JSON.parse(global.localStorage.getItem("user"));
-  const { emailAddress, memberType } = user;
-  const memberId = user.memberId;
+  const { search } = useLocation();
+  const { memberType, emailAddress, memberId } = queryString.parse(search)
+
+
+
+  // const user = JSON.parse(global.localStorage.getItem("user"));
+  // const { emailAddress, memberType } = user;
+  // const memberId = user.memberId;
 
   const openCat = () => {
     setCategoryModalShow(true);
@@ -47,7 +54,7 @@ const MyBooks = () => {
             ContentType: "application/json",
             ApiKey:
               "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c",
-            MemberType: memberType,
+            MemberType: parseInt(memberType),
           },
         }
       );
