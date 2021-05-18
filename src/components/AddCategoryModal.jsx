@@ -10,7 +10,7 @@ export default function AddCategoryModal(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("http://102.130.127.119:80/api/Category/CreateCategory", {
+    fetch(" https://1b9c41ffd051.ngrok.io/api/Category/CreateCategory", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

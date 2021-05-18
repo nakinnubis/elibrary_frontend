@@ -29,7 +29,7 @@ import axios from "axios";
 
 export default function Home() {
     const [data, setData] = useState([])
-    const baseUrl = "http://102.130.127.119:80/";
+    const baseUrl = "https://1b9c41ffd051.ngrok.io/";
     const [pdf, setPdf] = useState({ display: false, url: null });
     const [modal, setModal] = useState({ display: false });
     const [showUpload, setShowUpload] = useState(false);
@@ -99,7 +99,7 @@ export default function Home() {
   
     try {
       const response = await fetch(
-        `http://102.130.127.119:80/api/Document/BookCounts`,
+        `https://1b9c41ffd051.ngrok.io/api/Document/BookCounts`,
         {
           method: "GET",
           headers: {
@@ -120,9 +120,16 @@ export default function Home() {
   
   useEffect(async () => {
     let doc = await getData();
-    setData(doc.data);
+    if((doc) !== undefined || doc !== null){
+      setData(doc.data);
+      
+    }
+    
     let NumBooks = await getTotalBooks();
-    SetTotalBooks(NumBooks.data)
+    if((NumBooks)!== undefined || NumBooks !== null){
+     SetTotalBooks(NumBooks.data)
+    }
+   
   
     
   }, []);

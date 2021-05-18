@@ -29,7 +29,7 @@ const ManageBooks = () => {
   const [pageSize, setPageSize] = useState(12)
   const [goTo, setGoto] = useState(1);
   const [activePage, setActivePage] = useState(1);
-  const baseUrl = "http://102.130.127.119:80/";
+  const baseUrl = " https://1b9c41ffd051.ngrok.io/";
   const openCat = () => {
     setCategoryModalShow(true);
   };
@@ -168,7 +168,7 @@ const ManageBooks = () => {
       </DashboardStyles>
 
       <AddBookModal
-        url={`http://102.130.127.119:80/api/Document/Upload?username=${user}`}
+        url={` https://1b9c41ffd051.ngrok.io/api/Document/Upload?username=${user}`}
         show={modalBookShow}
         onHide={() => setBookModalShow(false)}
       />

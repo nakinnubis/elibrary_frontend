@@ -43,7 +43,7 @@ export default function Admin() {
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
-    fetch("http://102.130.127.119:80/api/auth/AdminLogin", {
+    fetch(" https://1b9c41ffd051.ngrok.io/api/auth/AdminLogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -51,7 +51,7 @@ export default function MemLogin() {
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
-    fetch("http://102.130.127.119:80/api/auth/login", {
+    fetch(" https://1b9c41ffd051.ngrok.io/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default function MemLogin() {
     })
       .then(res => res.json())
       .then(userData => {
-        fetch("http://102.130.127.119:80/api/AnnualDue/CheckMembershipStatus", {
+        fetch(" https://1b9c41ffd051.ngrok.io/api/AnnualDue/CheckMembershipStatus", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
