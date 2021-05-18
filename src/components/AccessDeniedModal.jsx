@@ -18,9 +18,9 @@ export default function AccessDeniedModal(props) {
         <h5 onClick={props.onHide}>&times;</h5>
       </div>
         
-        <p>Please Login <Link to ="/login"><span className="link">Here</span></Link></p>
+        <p>Please Login <a href="https://members.nape.org.ng/auth/login/"><span className="link">Here</span></a></p>
         
-        <p>Don't have an Account? Please contact <a href=""><span className="link">NAPE</span></a></p>
+        <p>Don't have an Account? Please contact <a href="https://members.nape.org.ng"><span className="link">NAPE</span></a></p>
       </div>
     </Modal>
   );

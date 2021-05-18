@@ -68,10 +68,10 @@ export default function Home() {
     setPdf({ ...pdf, display: !pdf.display });
   };
 
-  let history = useHistory();
-  let admin = JSON.parse(global.localStorage.getItem("admin"))
-  let member= JSON.parse(global.localStorage.getItem("user"))
-  let status = JSON.parse(global.localStorage.getItem("memStatus"))
+  // let history = useHistory();
+  // let admin = JSON.parse(global.localStorage.getItem("admin"))
+  // let member= JSON.parse(global.localStorage.getItem("user"))
+  // let status = JSON.parse(global.localStorage.getItem("memStatus"))
   
   
   const getData = async () => {
@@ -83,7 +83,6 @@ export default function Home() {
           headers: {
             ApiKey:
               "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c",
-              // Access-Control-Allow-Origin : *
               MemberType: 1
           }
         }
@@ -133,7 +132,6 @@ export default function Home() {
     axios
       .get(
         `${baseUrl}api/Document/MembersOnlyDocumentListing?page=${pageNumber - 1}&pageSize=${pageSize}`,
-        // `https://jsonplaceholder.typicode.com/posts?_page=${pageNumber}&_limit=20`
         {
           method: 'GET',
           headers: {
@@ -170,10 +168,10 @@ export default function Home() {
     });
   };
 
-  const logout = () => {
-    window.localStorage.clear();
-    history.push("/");
-  };
+  // const logout = () => {
+  //   window.localStorage.clear();
+  //   history.push("/");
+  // };
 
   const displayUsers = data.map((user, index) => {
     return (
@@ -193,7 +191,7 @@ export default function Home() {
               <p className="card-text card-lft">{user?._source.title}</p>
             </div>
             <div
-              onClick={() => ((status) ? showPdf(user) : ((member || admin) ? showModal() : setModalShow(true)))}
+              onClick={setModalShow(true)}
             
               className="card-footer bg-white text-center d-flex justify-content-evenly card-foot"
               style={{ cursor: "pointer" }}
@@ -219,7 +217,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="white-text green-background p-2 sticky-top">
+      {/* <header className="white-text green-background p-2 sticky-top">
         <div className="container logo-wrapper">
             <div className="logo">
                 <div>
@@ -262,9 +260,9 @@ export default function Home() {
                             <li className="nav-item">
                             <a className="nav-link text-white header-text" aria-current="page" href="/">Home</a>
                             </li>
-                            {/* <li className="nav-item">
+                            <li className="nav-item">
                             <a className="nav-link text-white header-text" href="#">Categories</a>
-                            </li> */}
+                            </li>
                             <li className="nav-item">
                             <a className="nav-link text-white header-text" href="#" tabindex="-1" aria-disabled="true">Contact US</a>
                             </li>
@@ -272,17 +270,17 @@ export default function Home() {
                             <a className="nav-link text-white header-text" href="https://nape.org.ng/" tabindex="-1" aria-disabled="true">Nape Main Site</a>
                             </li>
                         </ul>
-                        {/* <div className="d-flex bg-white float-right search">
+                        <div className="d-flex bg-white float-right search">
                             <img src={SearchIcon} alt="" />
                             <input className="form-control search-input" type="search" placeholder="Search books, author, keywords" aria-label="Search"/>
                         
-                        </div> */}
+                        </div>
                         </div>
                     </div>
                 </nav>
             </div>
         </div>
-      </header>
+      </header> */}
 
       <section className="container-fluid e-lib pb-5">
         <div className="container e-lib_box">
@@ -533,7 +531,7 @@ export default function Home() {
         onHide={() => setModalShow(false)}
         />
       }
-    <footer className="container-fluid section-7 big-footer">
+    {/* <footer className="container-fluid section-7 big-footer">
         <div className="container pt-5">
             <div className="row">
                 <div className="col-md-3">
@@ -584,7 +582,7 @@ export default function Home() {
             </p>
             </div>
         </div>
-    </footer>
+    </footer> */}
     
     </>
   )

@@ -78,7 +78,7 @@ const ManageBooks = () => {
     axios
       .get(
         `${baseUrl}api/Document/All?page=${pageNumber - 1}&pageSize=${pageSize}`,
-        // `https://jsonplaceholder.typicode.com/posts?_page=${pageNumber}&_limit=20`
+       
         {
           method: 'GET',
           headers: {
@@ -100,7 +100,7 @@ const ManageBooks = () => {
     axios
     .get(
       `${baseUrl}api/Document/All?page=${goTo - 1}&pageSize=${pageSize}`,
-      // `https://jsonplaceholder.typicode.com/posts?_page=${pageNumber}&_limit=20`
+      
       {
         method: 'GET',
         headers: {
