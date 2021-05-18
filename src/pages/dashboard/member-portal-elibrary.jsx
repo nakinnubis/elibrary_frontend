@@ -132,8 +132,8 @@ const MemberPortalELibrary = () => {
   useEffect( async () => {
     let doc =  await getData();
     let NumBooks = await getTotalBooks();
-    SetTotalBooks(NumBooks.data)
-    setData(doc.data);
+    SetTotalBooks(NumBooks?.data)
+    setData(doc?.data);
   }, []);
 
   
