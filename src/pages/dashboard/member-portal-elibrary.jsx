@@ -119,7 +119,7 @@ const MemberPortalELibrary = () => {
         }
       );
       const doc = await response.json();
-      setData(doc.data);
+      setData(doc?.data);
     } catch (error) {
       console.log(error);
     }
@@ -222,7 +222,7 @@ const MemberPortalELibrary = () => {
     });
   };
 
-  const displayUsers = data.map((user, index) => {
+  const displayUsers = data ? data.map((user, index) => {
     return (
       <div className="col" key={index}>
         {user && (
@@ -258,7 +258,7 @@ const MemberPortalELibrary = () => {
         )}
       </div>
     );
-  });
+  }) : '';
 
   return (
     <DashboardStyles className={""}>
@@ -287,7 +287,7 @@ const MemberPortalELibrary = () => {
               <button type="button" className="btn btn-primary books px-3 mb-1">
                 Books{" "}
                 <span className="badge bg-dark badge-custom">
-                  {data.length}
+                  {data ? data.length : 0}
                 </span>
               </button>
               {/* <button
@@ -386,7 +386,7 @@ const MemberPortalELibrary = () => {
       <section className="container list mb-5">
         <p className="list-total mb-4">{`Showing 1 - ${data?.length} books`}</p>
         <div className="row row-cols-1 row-cols-md-4 g-5 mb-2">
-          {data.length < 1 && <div>No Book Matched your search</div>}
+          {data && data.length < 1 && <div>No Book Matched your search</div>}
 
           {displayUsers}
         </div>
