@@ -40,7 +40,7 @@ const MyBooks = () => {
   const booKdata = async () => {
     try {
       const response = await fetch(
-        `http://102.130.127.119:80/api/Document/MyDocumentListing?memberId=${emailAddress}`,
+        ` https://1b9c41ffd051.ngrok.io/api/Document/MyDocumentListing?memberId=${emailAddress}`,
         {
           method: "GET",
           headers: {
@@ -76,7 +76,7 @@ const MyBooks = () => {
         <BookListComponent data={data} />
       </DashboardStyles>
       <AddBookModal
-        url={`http://102.130.127.119:80/api/Document/AddFile?memberId=${memberId}=${emailAddress}`}
+        url={` https://1b9c41ffd051.ngrok.io/api/Document/AddFile?memberId=${memberId}=${emailAddress}`}
         show={modalBookShow}
         onHide={() => setBookModalShow(false)}
       />

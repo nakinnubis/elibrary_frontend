@@ -9,7 +9,7 @@ export default function AddFolderModal(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("http://102.130.127.119:80/api/Folder/NewFolder", {
+    fetch(" https://1b9c41ffd051.ngrok.io/api/Folder/NewFolder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

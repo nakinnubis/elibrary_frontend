@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import "../styles/iframe.css"
 
 // let Base_Url = "https://rockcodeafrica.org/"
-let Base_Url = "http://102.130.127.119:80/"
+let Base_Url = " https://1b9c41ffd051.ngrok.io/"
 
 export default function Pdfviewer({ url = "", display = false, changeDisplay }) {
   let ref = useRef()

@@ -30,7 +30,7 @@ const MemberPortalELibrary = () => {
   const [goTo, setGoto] = useState(1);
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(12);
-  const baseUrl = "http://102.130.127.119:80/";
+  const baseUrl = " https://1b9c41ffd051.ngrok.io/";
   const [activePage, setActivePage] = useState(1);
   const [TotalBooks, SetTotalBooks] = useState(0);
   
@@ -79,7 +79,7 @@ const MemberPortalELibrary = () => {
   
     try {
       const response = await fetch(
-        `http://102.130.127.119:80/api/Document/BookCounts`,
+        ` https://1b9c41ffd051.ngrok.io/api/Document/BookCounts`,
         {
           method: "GET",
           headers: {

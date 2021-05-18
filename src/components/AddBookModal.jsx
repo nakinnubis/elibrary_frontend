@@ -10,10 +10,10 @@ import SuccessModal from "./SuccessModal";
 import ErrorModal from "./ErrorModal";
 
 export default function AddBookModal(props) {
-  const tagURL = "http://102.130.127.119:80/api/Tag/GetAllGetTags";
-  const folderURL = "http://102.130.127.119:80/api/Folder/GetFolders";
-  const catURL = "http://102.130.127.119:80/api/Category/GetAllGetCategories";
-  const accessURL = "http://102.130.127.119:80/api/AccessLevel/GetAccessLevels";
+  const tagURL = " https://1b9c41ffd051.ngrok.io/api/Tag/GetAllGetTags";
+  const folderURL = " https://1b9c41ffd051.ngrok.io/api/Folder/GetFolders";
+  const catURL = " https://1b9c41ffd051.ngrok.io/api/Category/GetAllGetCategories";
+  const accessURL = " https://1b9c41ffd051.ngrok.io/api/AccessLevel/GetAccessLevels";
 
   const [state, setState] = useState(false);
 
