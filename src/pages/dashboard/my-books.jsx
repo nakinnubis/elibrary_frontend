@@ -19,14 +19,12 @@ const MyBooks = () => {
   const [modalCategoryShow, setCategoryModalShow] = React.useState(false);
   const [modalTagShow, setTagModalShow] = React.useState(false);
 
-  const { search } = useLocation();
-  const { memberType, emailAddress, memberId } = queryString.parse(search)
 
 
 
-  // const user = JSON.parse(global.localStorage.getItem("user"));
-  // const { emailAddress, memberType } = user;
-  // const memberId = user.memberId;
+  const user = JSON.parse(global.localStorage.getItem("user"));
+  const { memberType, memberemail, memberid } = user;
+
 
   const openCat = () => {
     setCategoryModalShow(true);
@@ -47,7 +45,7 @@ const MyBooks = () => {
   const booKdata = async () => {
     try {
       const response = await fetch(
-        ` https://1b9c41ffd051.ngrok.io/api/Document/MyDocumentListing?memberId=${emailAddress}`,
+        ` https://1b9c41ffd051.ngrok.io/api/Document/MyDocumentListing?memberId=${memberemail}`,
         {
           method: "GET",
           headers: {
@@ -83,7 +81,8 @@ const MyBooks = () => {
         <BookListComponent data={data} />
       </DashboardStyles>
       <AddBookModal
-        url={` https://1b9c41ffd051.ngrok.io/api/Document/AddFile?memberId=${memberId}=${emailAddress}`}
+        url={` https://1b9c41ffd051.ngrok.io/api/Document/AddFile?memberId=${memberid}&email=${memberemail}`}
+        user={memberemail}
         show={modalBookShow}
         onHide={() => setBookModalShow(false)}
       />

@@ -300,11 +300,11 @@ export default function Home() {
                         <img className="search-icon" src={SearchIcon} alt="Search Icon" />
                         <input type="text" className="search-input grey-text w-75" placeholder="Search books, author, keywords" />
                     </div> */}
-                        <Link to="/login">
+                        {/* <Link to="/login"> */}
 
-                            <a className="text-anchor no-decor mb-4 d-block">Login as a member <img src={ForwardArrow}alt="Forward Icon" />
+                            <a className="text-anchor no-decor mb-4 d-block" href="https://members.nape.org.ng/auth/login/">Login as a member <img src={ForwardArrow}alt="Forward Icon" />
                             </a>
-                    </Link>
+                    {/* </Link> */}
                 </div>
                 <div className="col-md-7">
                     <img className="mt-5 login-img" src={OnlineLib} alt=""/>

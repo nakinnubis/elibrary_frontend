@@ -37,16 +37,16 @@ const MemberPortalELibrary = () => {
   
   
   const { search } = useLocation()
-  const { memberType, isFinanciallyUpdated } = queryString.parse(search)
-  console.log("iamsearch", search, memberType, isFinanciallyUpdated)
-  console.log("hi")
-
-  // let member= JSON.parse(global.localStorage.getItem("user"))
+  const memberData = queryString.parse(search)
+  const { memberType, isFinanciallyUpdated } = memberData
+  window.localStorage.setItem("user", JSON.stringify(memberData))
   
+  // let member= JSON.parse(global.localStorage.getItem("user"))
+  // "https://0d6013564680.ngrok.io/dashboard/member-portal-elibrary?memberType={$mtype}&isFinanciallyUpdated={$mstatus}&memberemail={$memail}&memberid={$mid}"
   useEffect(() => {
     // let memStatus = JSON.parse(global.localStorage.getItem("memStatus"));
     console.log("hi")
-    if (isFinanciallyUpdated) {
+    if (isFinanciallyUpdated=="Active") {
       setStatus(true);
     }
   }, []);
@@ -384,7 +384,7 @@ const MemberPortalELibrary = () => {
       </section>
 
       <section className="container list mb-5">
-        <p className="list-total mb-4">{`Showing 1 - ${data?.length} books`}</p>
+        {/* <p className="list-total mb-4">{`Showing 1 - ${data?.length} books`}</p> */}
         <div className="row row-cols-1 row-cols-md-4 g-5 mb-2">
           {data && data.length < 1 && <div>No Book Matched your search</div>}
 

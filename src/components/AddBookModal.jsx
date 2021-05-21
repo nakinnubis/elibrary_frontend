@@ -38,7 +38,7 @@ export default function AddBookModal(props) {
   const [date, setDate] = useState("");
   const [language, setLanguage] = useState("");
   const [isActive, setIsActive] = useState(false);
-  const [user, setUser] = useState("admin");
+  // const [user, setUser] = useState("admin");
   const [access, setAccess] = useState([]);
   const [loading, setLoading] = useState(false);
   const [formTags, setformTags] = useState([]);
@@ -220,9 +220,11 @@ export default function AddBookModal(props) {
       // setDocTag(tester)
       await fetchTag();
       // console.log("inside useEffect",docTag)
-      let admin = JSON.parse(global.localStorage.getItem("admin"));
-      console.log(admin);
-      setUser(admin?.username);
+      
+      // let admin = JSON.parse(global.localStorage.getItem("admin"));
+      // console.log(admin);
+      // setUser(admin);
+      // setUser(admin?.username);
       setLoading(false);
     }
     fetchData();
@@ -278,7 +280,7 @@ export default function AddBookModal(props) {
       description: description,
       active: isActive,
       folderID: folderValue,
-      userId: user,
+      userId: props.user,
       accessLevel: parseInt(accessLevel),
       Tags: formTags,
       categoryID: categoryValue,
