@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import Logo from "../../assets/logo.svg";
-import ELibLogo from "../../assets/nape-e-lib.svg"
-import SearchIcon from "../../assets/search-icon.svg"
+// import { Link, useHistory } from "react-router-dom";
+// import Logo from "../../assets/logo.svg";
+// import ELibLogo from "../../assets/nape-e-lib.svg"
+// import SearchIcon from "../../assets/search-icon.svg"
 import ForwardArrow from "../../assets/forward-arrow.svg"
 import OnlineLib from "../../assets/Online Library 2.svg"
-import Geology from "../../assets/geology.svg"
-import Book3 from "../../assets/book3.svg"
-import CartIcon from "../../assets/cart-icon.svg"
+// import Geology from "../../assets/geology.svg"
+// import Book3 from "../../assets/book3.svg"
+// import CartIcon from "../../assets/cart-icon.svg"
 import BookIcon from "../../assets/book-icon.svg"
 import DesktopPix from "../../assets/Desktop-picture.svg"
 import ReadAnyway from "../../assets/read-anywhere.svg"
 import SaveTime from "../../assets/save-time.svg"
 import Explore from "../../assets/explore.svg"
 import Unlimited from "../../assets/unlimited.svg"
-import NapeLogo from "../../assets/napelogo.svg"
-import Profileicon from "../../assets/profile-icon.svg";
-import Padlock from "../../assets/padlock.svg";
-import {Spinner} from "react-bootstrap"
-import Pdfviewer from "../../components/pdfviewer";
-import UploadViewer from "../../components/uploadModal";
-import Credit from "../../components/statusModal";
+// import NapeLogo from "../../assets/napelogo.svg"
+// import Profileicon from "../../assets/profile-icon.svg";
+// import Padlock from "../../assets/padlock.svg";
+// import {Spinner} from "react-bootstrap"
+// import Pdfviewer from "../../components/pdfviewer";
+// import UploadViewer from "../../components/uploadModal";
+// import Credit from "../../components/statusModal";
 import AccessDeniedModal from "../../components/AccessDeniedModal"
-import { Modal, Button } from "react-bootstrap";
+// import { Modal, Button } from "react-bootstrap";
 import Pagination from "react-js-pagination";
 import "./index.css"
 import axios from "axios";
@@ -30,9 +30,9 @@ import axios from "axios";
 export default function Home() {
     const [data, setData] = useState([])
     const baseUrl = "https://1b9c41ffd051.ngrok.io/";
-    const [pdf, setPdf] = useState({ display: false, url: null });
-    const [modal, setModal] = useState({ display: false });
-    const [showUpload, setShowUpload] = useState(false);
+    // const [pdf, setPdf] = useState({ display: false, url: null });
+    // const [modal, setModal] = useState({ display: false });
+    // const [showUpload, setShowUpload] = useState(false);
     const [page, setPage] = useState(0)
     const [pageSize, setPageSize] = useState(12)
     const [goTo, setGoto] = useState(1);
@@ -46,33 +46,28 @@ export default function Home() {
     const stopScroll = e => {
         e.preventDefault();
         console.log("scrolling");
-        };
-    const handleClose = () => setShowUpload(false);
+    };
+  //   const handleClose = () => setShowUpload(false);
 
-    const showPdf = data => {
-    let book_url = data._source.path;
-    setPdf({ display: true, url: book_url });
-  };
+  //   const showPdf = data => {
+  //   let book_url = data._source.path;
+  //   setPdf({ display: true, url: book_url });
+  // };
 
-  const showModal = () => {
-    setModal({ display: true }); 
-  };
+  // const showModal = () => {
+  //   setModal({ display: true }); 
+  // };
 
-  const toggleModal = () => {
-    console.log(modal);
-    setModal({ display: !modal.display });
-  };
+  // const toggleModal = () => {
+  //   console.log(modal);
+  //   setModal({ display: !modal.display });
+  // };
 
-  const togglePdf = () => {
-    console.log(pdf);
-    setPdf({ ...pdf, display: !pdf.display });
-  };
+  // const togglePdf = () => {
+  //   console.log(pdf);
+  //   setPdf({ ...pdf, display: !pdf.display });
+  // };
 
-  // let history = useHistory();
-  // let admin = JSON.parse(global.localStorage.getItem("admin"))
-  // let member= JSON.parse(global.localStorage.getItem("user"))
-  // let status = JSON.parse(global.localStorage.getItem("memStatus"))
-  
   
   const getData = async () => {
     try {
@@ -119,20 +114,17 @@ export default function Home() {
 
   
   useEffect(async () => {
+
     let doc = await getData();
-    if((doc) !== undefined || doc !== null){
-      setData(doc.data);
-      
-    }
-    
+    console.log("iamtesting doc", doc.data)
     let NumBooks = await getTotalBooks();
-    if((NumBooks)!== undefined || NumBooks !== null){
-     SetTotalBooks(NumBooks.data)
-    }
-   
-  
+    SetTotalBooks(NumBooks?.data)
+    setData(doc?.data);
+    console.log("iamtesting data", data)
+
+    // setData(doc);
     
-  }, []);
+    }, []);
 
 
   const handlePagination = pageNumber => {
@@ -179,48 +171,44 @@ export default function Home() {
   //   window.localStorage.clear();
   //   history.push("/");
   // };
-
-  const displayUsers = data.map((user, index) => {
-    return (
-      <div className="col" key={index}>
-        {user && (
-          <div className="card h-100 card-shadow card-hover">
-            <div className="img-cont my-auto" onScroll={stopScroll}>
-              <img
+    const displayUsers = data ? data.map((user, index) => {
+      return (
+        <div className="col" key={index}>
+          {user && (
+            <div className="card h-100 card-shadow card-hover">
+             <div className="img-cont my-auto" onScroll={stopScroll}>
+               <img
                 className="card-img-top img-cus"
                 src={`${baseUrl + user?._source.thumbnailpath}`}
                 alt="Book Image"
                 width="100%"
                 
               />
+
+              </div>
+              <div className="card-body d-flex flex-nowrap align-content-center align-items-center justify-content-between">
+               <p className="card-text card-lft">{user?._source.title}</p>
             </div>
-            <div className="card-body d-flex flex-nowrap align-content-center align-items-center justify-content-between">
-              <p className="card-text card-lft">{user?._source.title}</p>
-            </div>
-            <div
-              onClick={setModalShow(true)}
-            
-              className="card-footer bg-white text-center d-flex justify-content-evenly card-foot"
-              style={{ cursor: "pointer" }}
-            >
-                <img src={BookIcon} className="card-ft-left" alt="Logo"/>
-              {/* <img
-                src={Bookicon}
+            <div  onClick={()=>setModalShow(true)} className="card-footer bg-white text-center d-flex justify-content-evenly card-foot"
+              style={{ cursor: "pointer" }}>
+                {/* <img src={BookIcon} className="card-ft-left" alt="Logo"/> */}
+                <img
+                src={BookIcon}
                 width="20"
                 height="20"
                 className="card-ft-left"
                 alt="Logo"
               />
-              <small className="card-ft-right align-self-center">
-                Start reading
-              </small> */}
+                <small className="card-ft-right align-self-center">
+                  Start reading
+                </small>
             </div>
-          </div>
-        )}
-      </div>
-    );
-  });
 
+            </div>
+          )}
+        </div>
+      )
+    }): "";
 
   return (
     <>
@@ -521,7 +509,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    {pdf.display && (
+    {/* {pdf.display && (
         <Pdfviewer
           display={pdf.display}
           changeDisplay={togglePdf}
@@ -531,7 +519,7 @@ export default function Home() {
 
       {modal.display && (
         <Credit display={modal.display} changeModalDisplay={toggleModal} />
-      )}
+      )} */}
 
       {
         <AccessDeniedModal show={modalShow}
