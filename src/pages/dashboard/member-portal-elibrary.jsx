@@ -303,14 +303,14 @@ const MemberPortalELibrary = () => {
                 Authors{" "}
                 <span className="badge badge-cat">{getTotalAuthors(data)}</span>
               </button> */}
-              <Link to="/dashboard/my-books">
+              {/* <Link to="/dashboard/my-books">
                 <button
                   type="button"
                   className="btn btn-primary categories px-3 mb-1"
                 >
                   My Books <span className="badge badge-cat">&#10514;</span>
                 </button>
-              </Link>
+              </Link> */}
               <div className="btn-link-custom mb-1">
                 <a
                   className="btn btn-link btn-sm dropdown-toggle text-secondary text-decoration-none"
@@ -323,7 +323,7 @@ const MemberPortalELibrary = () => {
                   English
                 </a>
 
-                <ul
+                {/* <ul
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuLink"
                 >
@@ -342,7 +342,7 @@ const MemberPortalELibrary = () => {
                       Something else here
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
 
               <div className="btn-link-custom mb-1">
@@ -357,7 +357,7 @@ const MemberPortalELibrary = () => {
                   Format
                 </a>
 
-                <ul
+                {/* <ul
                   className="dropdown-menu"
                   aria-labelledby="dropdownMenuLink"
                 >
@@ -376,7 +376,7 @@ const MemberPortalELibrary = () => {
                       Something else here
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>
