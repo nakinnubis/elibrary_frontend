@@ -11,8 +11,8 @@ export const BookListComponentAdmin = (data) => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Book Id</th>
-            <th>Name</th>
+            <th>Book Title</th>
+            <th>Book Authur</th>
             <th>Status</th>
             <th>Date Created</th>
           </tr>
@@ -22,8 +22,8 @@ export const BookListComponentAdmin = (data) => {
           {bookLists?.map((bookList) => {
             return (
               <tr key={bookList.id}>
-                <td>{bookList._id}</td>
                 <td>{bookList._source.title}</td>
+                <td>{bookList._source.bookauthor}</td>
                 <td>{bookList._source.active ? "Active" : "Inactive"}</td>
                 <td>{dateFunc(bookList._source.uploaddate)}</td>
                 <td>

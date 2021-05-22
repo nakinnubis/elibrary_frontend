@@ -30,6 +30,8 @@ const ManageBooks = () => {
   const [pageSize, setPageSize] = useState(12)
   const [goTo, setGoto] = useState(1);
   const [activePage, setActivePage] = useState(1);
+  const [TotalBooks, SetTotalBooks] = useState(0);
+
   const baseUrl = " https://1b9c41ffd051.ngrok.io/";
   
   
@@ -70,13 +72,36 @@ const ManageBooks = () => {
 
       return bookResult.data;
 
-      // setdata(bookResult)
-      // console.log("testin", bookResult)
     } catch (error) {}
   };
 
+  const getTotalBooks = async () => {
+  
+    try {
+      const response = await fetch(
+        `${baseUrl}api/Document/BookCounts`,
+        {
+          method: "GET",
+          headers: {
+            ApiKey:
+              "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c",
+            MemberType: 1
+            
+          }
+        }
+      );
+      const doc = await response.json();
+      return doc
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   useEffect(async () => {
     const bookDetails = await booKdata();
+    const NumBooks = await getTotalBooks();
+    SetTotalBooks(NumBooks?.data)
     setData(bookDetails);
     setUser(userName);
     
@@ -141,7 +166,7 @@ const ManageBooks = () => {
             <Pagination
               activePage={activePage}
               itemsCountPerPage={pageSize}
-              totalItemsCount={120}
+              totalItemsCount={parseInt(TotalBooks)}
               pageRangeDisplayed={5}
               prevPageText="Prev"
               nextPageText="Next"
