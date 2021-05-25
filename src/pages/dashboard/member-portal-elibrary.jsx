@@ -241,7 +241,7 @@ const MemberPortalELibrary = () => {
               <p className="card-text card-lft">{user?._source.title}</p>
             </div>
             <div
-              onClick={() => (status ? showModal() : showModal())}
+              onClick={() => (status ? showPdf(user) : showModal())}
               className="card-footer bg-white text-center d-flex justify-content-evenly card-foot"
               style={{ cursor: "pointer" }}
             >
