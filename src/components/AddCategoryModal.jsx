@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { AddFormModalStyle } from "../../src/styles/AdminAuthStyles";
 import SuccessModal from "./SuccessModal";
+import { useHistory } from "react-router-dom";
 
 export default function AddCategoryModal(props) {
   const [CategoryName, setCategoryName] = useState("");
   const [description, setDescriptionName] = useState("");
   const [state, setState] = useState(false);
 
+  const history = useHistory()
   const handleSubmit = async (e) => {
     e.preventDefault();
     fetch(" https://1b9c41ffd051.ngrok.io/api/Category/CreateCategory", {
@@ -42,7 +44,9 @@ export default function AddCategoryModal(props) {
         name={"category"}
         change={CategoryName}
         state={state}
-        hide={()=>setState(!state)}
+        hide={()=>{setState(!state)
+        history.go(0)}}
+        
       />
       <Modal
         {...props}

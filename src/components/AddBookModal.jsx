@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { useHistory } from "react-router-dom";
 import { Modal, Button, Spinner } from "react-bootstrap";
 import thumbnailIcon from "../assets/thumbnail-icon.svg";
 import uploadIcon from "../assets/upload-icon.svg";
@@ -49,6 +49,7 @@ export default function AddBookModal(props) {
   const [borrowPricing, SetBorrowPricing] = useState(0);
   const [option, setOption] = useState([]);
 
+  
   const languageOptions = [
     { value: "English", label: "English" },
     { value: "French", label: "French" },
@@ -76,16 +77,9 @@ export default function AddBookModal(props) {
     newValue && setLanguage(newValue.value);
   };
 
-  const createTags = (name) => {
-    let newTags = []
-      for(let i in name){
-      newTags.push({tagName: name[i].label})
-    };
-    return newTags
-    
-  };
-
   
+
+  const history = useHistory()
   const changeTagValue = (data) => {
     data["value"] = data["tagName"];
     data["label"] = data["tagName"];
@@ -211,68 +205,19 @@ export default function AddBookModal(props) {
       await fetchfolders();
       await fetchCategory();
       await fetchAccess();
-      // let tester = formTags.map(createTags)
-      // setDocTag(tester)
       await fetchTag();
-      // console.log("inside useEffect",docTag)
-      
-      // let admin = JSON.parse(global.localStorage.getItem("admin"));
-      // console.log(admin);
-      // setUser(admin);
-      // setUser(admin?.username);
       setLoading(false);
     }
     fetchData();
   }, []);
 
-  // find new tag
-  const filterNewTags = (tags) => {
-    let newTag = [];
-    for (const i in tags) {
-      if (tags[i].hasOwnProperty("__isNew__")) {
-        newTag.push(tags[i]);
-      }
-    }
-    return newTag;
-  };
-  const tagUploadFormat = (tags) => {
-    let tagToUpload = [];
-    for (const i in tags) {
-      if (tags[i].hasOwnProperty("__isNew__")) {
-        //   // newTag.push(tags[i])
-        //   console.log("before deleting", tags[i])
-        //   delete tags[i].label
-        //   tagToUpload.push(tags[i])
-        //   console.log("after removing label", tags[i])
-        // // }else{
-        let newTags = {
-          tagiD: null,
-          tagName: tags[i].label,
-          documents: null,
-          document: null,
-        };
-        // console.log("iamhere",tags[i])
-      }
-      // console.log(tags[i])
-    }
-
-    return tagToUpload;
-  };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(!loading);
-    // console.log(book)
-    // console.log("inside submit",formTags)
-
-    // if (loading) return;
-
-    let newTags = filterNewTags(formTags);
-    // let tagToUpload = createTags(newTags)
     let tagToUpload = formTags.map(param => {
       if(!param.hasOwnProperty('tagName')) {
           param = {...param, tagName: param.label}
-            //return para = {...para, para.keyTag:"tag"
             delete param.value
             delete param.label
             delete param.__isNew___
@@ -337,22 +282,8 @@ export default function AddBookModal(props) {
     
   };
 
-  const displayFolders = folders.map((folder) => {
-    return (
-      <option key={folder.folderID} value={folder.name}>
-        {folder.name}
-      </option>
-    );
-  });
 
   const style = {
-    // control: (base) => ({
-    //   ...base,
-    //   // border: 0,
-    //   // This line disable the blue border
-    //   boxShadow: "none",
-    //   // borderColor: "none"
-    // }),
     control: (base, state) => ({
       ...base,
       // border: "1px solid #dbdbdb",
@@ -371,7 +302,9 @@ export default function AddBookModal(props) {
           name="book"
           change={book.name}
           state={state}
-          hide={() => setState(!state)}
+          hide={() =>{ setState(!state)
+          history.go(0)}}
+          
         />
       ) : (
         <ErrorModal
