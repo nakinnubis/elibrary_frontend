@@ -147,8 +147,10 @@ const MemberPortalELibrary = () => {
   const showPdf = data => {
     console.log(data);
     // let book_url = data.path
-    let book_url = data._source.path;
+    for(let i in data){
+    let book_url = data[i]._source.path;
     setPdf({ display: true, url: book_url });
+    }
   };
 
   const showModal = () => {
