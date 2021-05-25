@@ -38,7 +38,6 @@ const ManageBooks = () => {
   const { search } = useLocation();
   const { userName } = queryString.parse(search)
   // window.localStorage.setItem("admin",userName)
-
   const openCat = () => {
     setCategoryModalShow(true);
   };
@@ -203,17 +202,27 @@ const ManageBooks = () => {
         url={` https://1b9c41ffd051.ngrok.io/api/Document/Upload?username=${user}`}
         user={user}
         show={modalBookShow}
-        onHide={() => setBookModalShow(false)}
+        onHide={() => {setBookModalShow(false)
+                        //  reload() 
+                      }}
       />
       <AddFolderModal
         show={modalFolderShow}
-        onHide={() => setFolderModalShow(false)}
+        onHide={() => {setFolderModalShow(false)
+                      //  reload() 
+                      }}
       />
       <AddCategoryModal
         show={modalCategoryShow}
-        onHide={() => setCategoryModalShow(false)}
+        onHide={() => {setCategoryModalShow(false) 
+                      // reload() 
+                    }}
       />
-      <AddTagModal show={modalTagShow} onHide={() => setTagModalShow(false)} />
+      <AddTagModal 
+      show={modalTagShow} 
+      onHide={() => {setTagModalShow(false)
+                    //  reload() 
+                     }} />
       <SuccessModal />
     </>
   );

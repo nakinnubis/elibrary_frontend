@@ -268,31 +268,20 @@ export default function AddBookModal(props) {
     // if (loading) return;
 
     let newTags = filterNewTags(formTags);
-    if (newTags){
-      let tagToUpload = createTags(newTags)
-      fetch(createTagURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ApiKey:
-          "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c",
-      },
-      body: JSON.stringify(
-        
-          tagToUpload,
-        
-      ),
-      
-    })
-    .then((res) => res.json())
-    .catch((err) => {
-        console.log({ err });
-      });
-
-      console.log("iamnewtag", newTags);
-
-    }
-    
+    // let tagToUpload = createTags(newTags)
+    let tagToUpload = formTags.map(param => {
+      if(!param.hasOwnProperty('tagName')) {
+          param = {...param, tagName: param.label}
+            //return para = {...para, para.keyTag:"tag"
+            delete param.value
+            delete param.label
+            delete param.__isNew___
+            return param
+          }
+          delete param.value
+          delete param.label
+          return param
+      })
 
     let docs = {
       title: title,
@@ -301,21 +290,21 @@ export default function AddBookModal(props) {
       folderID: folderValue,
       userId: props.user,
       accessLevel: parseInt(accessLevel),
-      Tags: formTags,
+      Tags: tagToUpload,
       categoryID: categoryValue,
       documentpricing: parseFloat(price),
       borrowPricing: parseFloat(borrowPricing),
-      publisher: publisher,
+      Publisher: publisher,
       datePublished: date,
       publisherUrl: pubWebsite,
-      isbn: isbn,
-      bookAuthor: bookAuthor,
-      language: language,
+      ISBN: isbn,
+      BookAuthor: bookAuthor,
+      Language: language,
       fileFormat: fileFormat,
-      publishYear: publishYear,
+      PublishYear: publishYear,
     };
 
-    console.log(docs);
+    console.log("iamdoc",docs);
     const formdata = new FormData();
     formdata.append("file", book, book.name);
     formdata.append("Document", JSON.stringify(docs));
@@ -331,10 +320,8 @@ export default function AddBookModal(props) {
           "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c",
       },
     };
-
     const message = "File was successfully uploaded";
-
-    fetch(props.url, requestOptions)
+      fetch(props.url, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log("This is the result", result.message);
@@ -347,6 +334,7 @@ export default function AddBookModal(props) {
         setState(!state);
       })
       .catch((error) => console.log("error", error));
+    
   };
 
   const displayFolders = folders.map((folder) => {
