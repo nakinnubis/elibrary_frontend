@@ -147,10 +147,10 @@ const MemberPortalELibrary = () => {
   const showPdf = data => {
     console.log(data);
     // let book_url = data.path
-    for(let i in data){
-    let book_url = data[i]._source.path;
+    // for(let i in data){
+    let book_url = data?._source.path;
     setPdf({ display: true, url: book_url });
-    }
+    // }
   };
 
   const showModal = () => {
@@ -241,7 +241,7 @@ const MemberPortalELibrary = () => {
               <p className="card-text card-lft">{user?._source.title}</p>
             </div>
             <div
-              onClick={() => (status ? showPdf(user) : showModal())}
+              onClick={() => (status ? showModal() : showModal())}
               className="card-footer bg-white text-center d-flex justify-content-evenly card-foot"
               style={{ cursor: "pointer" }}
             >
