@@ -14,6 +14,7 @@ export default function AddBookModal(props) {
   const folderURL = " https://1b9c41ffd051.ngrok.io/api/Folder/GetFolders";
   const catURL = " https://1b9c41ffd051.ngrok.io/api/Category/GetAllGetCategories";
   const accessURL = " https://1b9c41ffd051.ngrok.io/api/AccessLevel/GetAccessLevels";
+  const createTagURL = " https://1b9c41ffd051.ngrok.io/api/Tag/AddTag"
 
   const [state, setState] = useState(false);
 
@@ -76,21 +77,15 @@ export default function AddBookModal(props) {
   };
 
   const createTags = (name) => {
-    let newTags = {
-      tagiD: null,
-      tagName: name.label,
-      documents: null,
-      document: null,
+    let newTags = []
+      for(let i in name){
+      newTags.push({tagName: name[i].label})
     };
-    return newTags;
+    return newTags
+    
   };
 
-  const testOption = [
-    { label: "thinking", value: "shame" },
-    { label: "thinking", value: "shame" },
-    { label: "thinking", value: "shame" },
-    { label: "eating", value: "good" },
-  ];
+  
   const changeTagValue = (data) => {
     data["value"] = data["tagName"];
     data["label"] = data["tagName"];
@@ -273,7 +268,31 @@ export default function AddBookModal(props) {
     // if (loading) return;
 
     let newTags = filterNewTags(formTags);
-    console.log("iamnewtag", newTags);
+    if (newTags){
+      let tagToUpload = createTags(newTags)
+      fetch(createTagURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ApiKey:
+          "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c",
+      },
+      body: JSON.stringify(
+        
+          tagToUpload,
+        
+      ),
+      
+    })
+    .then((res) => res.json())
+    .catch((err) => {
+        console.log({ err });
+      });
+
+      console.log("iamnewtag", newTags);
+
+    }
+    
 
     let docs = {
       title: title,
