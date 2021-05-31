@@ -9,14 +9,35 @@
   align-items: center;
   position: fixed;
   z-index: 9999;
-  top:0;
+  top:5%;
   bottom:0;
   left:0;
   right:0;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   padding:2% 5%;
   background-color:transparent;
+  overflow: hidden;
+}
+
+.pdfwrapper-frame{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: fixed; */
+  /* z-index: 9999; */
+  /* top:5%; */
+  /* bottom:0; */
+  /* left:0; */
+  /* right:0; */
+  width: 80vw;
+  height: 90vh;
+  padding:2% 5%;
+  background-color:rgba(102, 51, 153, 0.5);
   overflow: hidden;
 }
 
@@ -53,3 +74,50 @@
 .smallFrame::-webkit-scrollbar{
   display: none;
 }
+
+.app {
+  font-family: sans-serif;
+  text-align: center;
+ 
+}
+
+/* h4 {
+  text-align: left;
+  margin-left: 40px;
+} */
+
+hr {
+  border-top: 2px dotted #075f49;
+}
+
+.pdfbutton {
+  margin-right: 10px;
+  background: #075f49;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  width: 100px;
+  cursor: pointer;
+  /* box-shadow: 2px 2px 2px 1px #ccc; */
+  border-radius: 5px;
+}
+
+/* For pdf */
+.react-pdf__Page {
+  margin-top: 10px;
+}
+.react-pdf__Page__textContent {
+  border: 1px solid darkgrey;
+  box-shadow: 5px 5px 5px 1px #ccc;
+  border-radius: 5px;
+}
+
+.react-pdf__Page__annotations.annotationLayer {
+  padding: 20px;
+}
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+}
+
+

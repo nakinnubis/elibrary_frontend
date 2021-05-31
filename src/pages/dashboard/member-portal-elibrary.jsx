@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import DashboardStyles from "../../styles/DashboardStyles";
 import "../../styles/LibStyles.module.css";
 import Pdfviewer from "../../components/pdfviewer";
+import PdfviewerReact from "../../components/pdfviewerReact";
 import Credit from "../../components/statusModal";
 import UploadViewer from "../../components/uploadModal";
 import { getTotalAuthors } from "../../helper/general";
@@ -22,6 +23,7 @@ const stopScroll = e => {
 const MemberPortalELibrary = () => {
   const userData = useContext(AuthContext);
   const [pdf, setPdf] = useState({ display: false, url: null });
+  const [pdfReact, setPdfReact] = useState("");
   const [modal, setModal] = useState({ display: false });
   let ref = useRef();
   const [data, setData] = useState([]);
@@ -34,6 +36,7 @@ const MemberPortalELibrary = () => {
   const baseUrl = " https://1b9c41ffd051.ngrok.io/";
   const [activePage, setActivePage] = useState(1);
   const [TotalBooks, SetTotalBooks] = useState(0);
+  const [reactmodalShow, setReactModalShow] = useState(false);
   
   
   const { search } = useLocation()
@@ -150,6 +153,12 @@ const MemberPortalELibrary = () => {
     let book_url = data._source.path;
     setPdf({ display: true, url: book_url });
   };
+   const showPdfReact = data => {
+    console.log(data);
+    // let book_url = data.path
+    let book_url = data._source.path;
+    setPdfReact({ display: true, url: book_url });
+  };
 
   const showModal = () => {
     setModal({ display: true });
@@ -163,6 +172,10 @@ const MemberPortalELibrary = () => {
   const togglePdf = () => {
     console.log(pdf);
     setPdf({ ...pdf, display: !pdf.display });
+  };
+  const togglePdfReact = () => {
+    console.log(pdfReact);
+    setPdfReact({ ...pdfReact, display: !pdf.display });
   };
 
   // const handleClose = () => setShowUpload(false);
@@ -223,6 +236,7 @@ const MemberPortalELibrary = () => {
   };
 
   const displayUsers = data ? data.map((user, index) => {
+    
     return (
       <div className="col" key={index}>
         {user && (
@@ -239,7 +253,7 @@ const MemberPortalELibrary = () => {
               <p className="card-text card-lft">{user?._source.title}</p>
             </div>
             <div
-              onClick={() => (status ? showPdf(user) : showModal())}
+              onClick={() => (status ? setReactModalShow(true) : showModal())}
               className="card-footer bg-white text-center d-flex justify-content-evenly card-foot"
               style={{ cursor: "pointer" }}
             >
@@ -254,7 +268,14 @@ const MemberPortalELibrary = () => {
                 Start reading
               </small>
             </div>
+            <PdfviewerReact
+        show={reactmodalShow}
+        onHide={() => setReactModalShow(false)}
+        url={user?._source.path}
+        
+        />
           </div>
+          
         )}
       </div>
     );
@@ -439,7 +460,17 @@ const MemberPortalELibrary = () => {
         <Credit display={modal.display} changeModalDisplay={toggleModal} />
       )}
 
+      {/* {pdfReact.display && (
+        <PdfviewerReact
+          display={pdfReact.display}
+          changeDisplay={togglePdfReact}
+          url={pdfReact.url}
+        />
+      )} */}
+
+      
       {
+        
         // <Modal
         //   show={showUpload}
         //   onHide={handleClose}

@@ -78,3 +78,6 @@ body{
 .no-decor{
     text-decoration: none;
 }
+#toolbar{
+    display: none;
+}

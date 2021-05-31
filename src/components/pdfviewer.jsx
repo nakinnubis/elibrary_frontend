@@ -30,7 +30,7 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
         title="Inline Frame Example"
         className={"iframe-display"}
         // src={Base_Url + url}>
-        src = {`https://docs.google.com/gview?url=${Base_Url + url}&embedded=true`}>
+        src = {`${Base_Url + url + "#toolbar=0"}`}>
       </embed>
     </div>) :
     <></>
