@@ -9,13 +9,13 @@
   align-items: center;
   position: fixed;
   z-index: 9999;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  width: 100vw;
-  height: 100vh;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, 0%);
+  width: 90vw;
+  height: 78vh;
   padding:2% 5%;
+  margin-top: 22vh;
   background-color:transparent;
   overflow: hidden;
 }

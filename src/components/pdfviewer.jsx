@@ -23,7 +23,6 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
     console.log(e.target)
     console.log(ref.current)
     if (e.target === ref.current) {
-      console.log("hiii")
       changeDisplay()
     }
   }
@@ -33,11 +32,8 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
   return (display ?
     (<div className={"wrapper-frame"} ref={ref}>
       <embed
-        onClick={()=>alert("iamiframe")}
-        
         title="Inline Frame Example"
         className={"iframe-display"}
-        // src={Base_Url + url}>
         // src = {`https://docs.google.com/gview?url=${Base_Url + url}&embedded=true`}>
         src = {`${Base_Url + url}#toolbar=0`}>
         
