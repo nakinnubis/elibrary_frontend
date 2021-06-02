@@ -184,7 +184,7 @@ const openCat = () => {
               type="number"
               className="py-1 px-2 align-self-baseline"
               min="1"
-              max={9}
+              max={Math.ceil(TotalBooks/pageSize)}
               value={goTo}
               onChange={(e)=>{setGoto(e.target.value)}}
             />
