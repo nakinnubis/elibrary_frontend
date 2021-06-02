@@ -27,11 +27,11 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
       changeDisplay()
     }
   }
-  document.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-  });
+  // document.addEventListener("contextmenu", (event) => {
+  //   event.preventDefault();
+  // });
   return (display ?
-    (<div className={"wrapper-frame"} ref={ref} id ="iframebody" onClick={()=>alert("im loaded")}>
+    (<div className={"wrapper-frame"} ref={ref}>
       <embed
         onClick={()=>alert("iamiframe")}
         
