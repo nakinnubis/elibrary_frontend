@@ -8,9 +8,13 @@ let Base_Url = "https://1b9c41ffd051.ngrok.io/"
 
 export default function Pdfviewer({ url = "", display = false, changeDisplay }) {
   let ref = useRef()
-
+  
 
   useEffect(() => {
+    document.addEventListener("iframebody", (event) => {
+    // event.preventDefault();
+    
+  });
     window.addEventListener('click', removeClick)
     return () => window.removeEventListener('click', removeClick)
   }, [])
@@ -23,14 +27,20 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
       changeDisplay()
     }
   }
-
+  document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+  });
   return (display ?
-    (<div className={"wrapper-frame"} ref={ref}>
+    (<div className={"wrapper-frame"} ref={ref} id ="iframebody" onClick={()=>alert("im loaded")}>
       <embed
+        onClick={()=>alert("iamiframe")}
+        
         title="Inline Frame Example"
         className={"iframe-display"}
         // src={Base_Url + url}>
-        src = {`https://docs.google.com/gview?url=${Base_Url + url}&embedded=true`}>
+        // src = {`https://docs.google.com/gview?url=${Base_Url + url}&embedded=true`}>
+        src = {`${Base_Url + url}#toolbar=0`}>
+        
       </embed>
     </div>) :
     <></>
