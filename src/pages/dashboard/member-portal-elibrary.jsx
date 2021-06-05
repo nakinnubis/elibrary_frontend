@@ -16,7 +16,7 @@ import queryString from "query-string";
 
 const stopScroll = e => {
   e.preventDefault();
-  console.log("scrolling");
+  
 };
 
 const MemberPortalELibrary = () => {
@@ -41,11 +41,8 @@ const MemberPortalELibrary = () => {
   const { memberType, isFinanciallyUpdated } = memberData
   window.localStorage.setItem("user", JSON.stringify(memberData))
   
-  // let member= JSON.parse(global.localStorage.getItem("user"))
-  // "https://0d6013564680.ngrok.io/dashboard/member-portal-elibrary?memberType={$mtype}&isFinanciallyUpdated={$mstatus}&memberemail={$memail}&memberid={$mid}"
+  
   useEffect(() => {
-    // let memStatus = JSON.parse(global.localStorage.getItem("memStatus"));
-    console.log("hi")
     if (isFinanciallyUpdated=="Active") {
       setStatus(true);
     }
@@ -98,7 +95,6 @@ const MemberPortalELibrary = () => {
         }
       );
       const doc = await response.json();
-      console.log("iamtotalbook",doc)
       return doc
     } catch (error) {
       console.log(error);
@@ -138,15 +134,7 @@ const MemberPortalELibrary = () => {
 
   
 
-  const removeClick = e => {
-    if (e.target === ref.current) {
-      console.log("hiii");
-    }
-  };
-
   const showPdf = data => {
-    console.log(data);
-    // let book_url = data.path
     let book_url = data._source.path;
     setPdf({ display: true, url: book_url });
   };
@@ -156,17 +144,13 @@ const MemberPortalELibrary = () => {
   };
 
   const toggleModal = () => {
-    console.log(modal);
     setModal({ display: !modal.display });
   };
 
   const togglePdf = () => {
-    console.log(pdf);
     setPdf({ ...pdf, display: !pdf.display });
   };
 
-  // const handleClose = () => setShowUpload(false);
-  // const handleShow = () => setShowUpload(true);
 
   const handlePagination = pageNumber => {
     let url =""
@@ -290,27 +274,7 @@ const MemberPortalELibrary = () => {
                   {data ? data.length : 0}
                 </span>
               </button>
-              {/* <button
-                type="button"
-                className="btn btn-primary categories px-3 mb-1"
-              >
-                Categories <span className="badge badge-cat">100</span>
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary authors px-3 mb-1"
-              >
-                Authors{" "}
-                <span className="badge badge-cat">{getTotalAuthors(data)}</span>
-              </button> */}
-              {/* <Link to="/dashboard/my-books">
-                <button
-                  type="button"
-                  className="btn btn-primary categories px-3 mb-1"
-                >
-                  My Books <span className="badge badge-cat">&#10514;</span>
-                </button>
-              </Link> */}
+              
               <div className="btn-link-custom mb-1">
                 <a
                   className="btn btn-link btn-sm dropdown-toggle text-secondary text-decoration-none"
@@ -439,16 +403,6 @@ const MemberPortalELibrary = () => {
         <Credit display={modal.display} changeModalDisplay={toggleModal} />
       )}
 
-      {
-        // <Modal
-        //   show={showUpload}
-        //   onHide={handleClose}
-        //   backdrop="static"
-        //   keyboard={false}
-        // >
-        //   <UploadViewer></UploadViewer>
-        // </Modal>
-      }
     </DashboardStyles>
   );
 };
