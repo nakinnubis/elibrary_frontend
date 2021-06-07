@@ -292,8 +292,10 @@ const DashboardStyles = styled.div`
   }
 
   .card-img-top {
-    width: 80%;
-    height: 100%;
+    max-width: 80%;
+    max-height: 100%;
+    align-self: center;
+    
   }
   .card-hover {
     transition: all 0.3s ease-in-out;
@@ -306,6 +308,7 @@ const DashboardStyles = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
+    
   }
 
   .btn-cus {
@@ -433,6 +436,9 @@ const DashboardStyles = styled.div`
     .user-icon {
       font-size: 0.5rem;
     }
+     .card-img-top {
+    object-fit: contain;
+  }
   }
 `;
 
