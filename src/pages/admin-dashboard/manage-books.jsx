@@ -200,7 +200,7 @@ const openCat = () => {
       </DashboardStyles>
 
       <AddBookModal
-        url={` https://1b9c41ffd051.ngrok.io/api/Document/Upload?username=${user}`}
+        url={` http://102.130.127.119/api/Document/Upload?username=${user}`}
         user={user}
         show={modalBookShow}
         onHide={() => setBookModalShow(false)}
