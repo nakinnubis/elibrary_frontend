@@ -83,7 +83,7 @@ export default function Home() {
         }
       );
       const doc = await response.json();
-      return doc
+      return doc;
     } catch (error) {
       console.log(error);
     }
@@ -116,13 +116,10 @@ export default function Home() {
   useEffect(async () => {
 
     let doc = await getData();
-    console.log("iamtesting doc", doc.data)
     let NumBooks = await getTotalBooks();
     SetTotalBooks(NumBooks?.data)
     setData(doc?.data);
-    console.log("iamtesting data", data)
-
-    // setData(doc);
+    
     
     }, []);
 
@@ -464,7 +461,7 @@ export default function Home() {
                 </p>
 
                 <div className="row row-cols-1 row-cols-lg-4 g-5 mt-2">
-                    
+                    {!data && <div>No book to display yet</div>}
                     {displayUsers}
                 </div>
 
