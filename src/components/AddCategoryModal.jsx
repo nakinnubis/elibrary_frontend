@@ -12,7 +12,7 @@ export default function AddCategoryModal(props) {
   const history = useHistory()
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch(" https://elib.vascloud.ng/api/Category/CreateCategory", {
+    fetch(" http://localhost:5000/api/Category/CreateCategory", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
