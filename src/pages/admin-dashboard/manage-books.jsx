@@ -32,7 +32,7 @@ const ManageBooks = () => {
   const [activePage, setActivePage] = useState(1);
   const [TotalBooks, SetTotalBooks] = useState(0);
 
-  const baseUrl = " https://1b9c41ffd051.ngrok.io/";
+  const baseUrl = " https://elib.vascloud.ng/";
   
   
   const { search } = useLocation();
@@ -200,7 +200,7 @@ const openCat = () => {
       </DashboardStyles>
 
       <AddBookModal
-        url={` http://102.130.127.119/api/Document/Upload?username=${user}`}
+        url={` ${baseUrl}api/Document/Upload?username=${user}`}
         user={user}
         show={modalBookShow}
         onHide={() => setBookModalShow(false)}

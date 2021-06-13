@@ -29,7 +29,7 @@ import axios from "axios";
 
 export default function Home() {
     const [data, setData] = useState([])
-    const baseUrl = "https://1b9c41ffd051.ngrok.io/";
+    const baseUrl = "https://elib.vascloud.ng/";
     // const [pdf, setPdf] = useState({ display: false, url: null });
     // const [modal, setModal] = useState({ display: false });
     // const [showUpload, setShowUpload] = useState(false);
@@ -94,7 +94,7 @@ export default function Home() {
   
     try {
       const response = await fetch(
-        `https://1b9c41ffd051.ngrok.io/api/Document/BookCounts`,
+        `${baseUrl}api/Document/BookCounts`,
         {
           method: "GET",
           headers: {
