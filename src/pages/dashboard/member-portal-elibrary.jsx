@@ -17,7 +17,7 @@ import queryString from "query-string";
 
 const stopScroll = e => {
   e.preventDefault();
-  console.log("scrolling");
+  
 };
 
 const MemberPortalELibrary = () => {
@@ -33,7 +33,7 @@ const MemberPortalELibrary = () => {
   const [goTo, setGoto] = useState(1);
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(12);
-  const baseUrl = " https://1b9c41ffd051.ngrok.io/";
+  const baseUrl = " https://elib.vascloud.ng/";
   const [activePage, setActivePage] = useState(1);
   const [TotalBooks, SetTotalBooks] = useState(0);
   const [reactmodalShow, setReactModalShow] = useState(false);
@@ -44,11 +44,8 @@ const MemberPortalELibrary = () => {
   const { memberType, isFinanciallyUpdated } = memberData
   window.localStorage.setItem("user", JSON.stringify(memberData))
   
-  // let member= JSON.parse(global.localStorage.getItem("user"))
-  // "https://0d6013564680.ngrok.io/dashboard/member-portal-elibrary?memberType={$mtype}&isFinanciallyUpdated={$mstatus}&memberemail={$memail}&memberid={$mid}"
+  
   useEffect(() => {
-    // let memStatus = JSON.parse(global.localStorage.getItem("memStatus"));
-    console.log("hi")
     if (isFinanciallyUpdated=="Active") {
       setStatus(true);
     }
@@ -89,7 +86,7 @@ const MemberPortalELibrary = () => {
   
     try {
       const response = await fetch(
-        ` https://1b9c41ffd051.ngrok.io/api/Document/BookCounts`,
+        ` ${baseUrl}api/Document/BookCounts`,
         {
           method: "GET",
           headers: {
@@ -101,7 +98,6 @@ const MemberPortalELibrary = () => {
         }
       );
       const doc = await response.json();
-      console.log("iamtotalbook",doc)
       return doc
     } catch (error) {
       console.log(error);
@@ -141,15 +137,7 @@ const MemberPortalELibrary = () => {
 
   
 
-  const removeClick = e => {
-    if (e.target === ref.current) {
-      console.log("hiii");
-    }
-  };
-
   const showPdf = data => {
-    console.log(data);
-    // let book_url = data.path
     let book_url = data._source.path;
     setPdf({ display: true, url: book_url });
   };
@@ -165,12 +153,10 @@ const MemberPortalELibrary = () => {
   };
 
   const toggleModal = () => {
-    console.log(modal);
     setModal({ display: !modal.display });
   };
 
   const togglePdf = () => {
-    console.log(pdf);
     setPdf({ ...pdf, display: !pdf.display });
   };
   const togglePdfReact = () => {
@@ -178,8 +164,6 @@ const MemberPortalELibrary = () => {
     setPdfReact({ ...pdfReact, display: !pdf.display });
   };
 
-  // const handleClose = () => setShowUpload(false);
-  // const handleShow = () => setShowUpload(true);
 
   const handlePagination = pageNumber => {
     let url =""
@@ -271,7 +255,7 @@ const MemberPortalELibrary = () => {
             <PdfviewerReact
         show={reactmodalShow}
         onHide={() => setReactModalShow(false)}
-        url={user?._source.path}
+        url={`${baseUrl + user?._source.path}`}
         
         />
           </div>
@@ -311,27 +295,7 @@ const MemberPortalELibrary = () => {
                   {data ? data.length : 0}
                 </span>
               </button>
-              {/* <button
-                type="button"
-                className="btn btn-primary categories px-3 mb-1"
-              >
-                Categories <span className="badge badge-cat">100</span>
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary authors px-3 mb-1"
-              >
-                Authors{" "}
-                <span className="badge badge-cat">{getTotalAuthors(data)}</span>
-              </button> */}
-              {/* <Link to="/dashboard/my-books">
-                <button
-                  type="button"
-                  className="btn btn-primary categories px-3 mb-1"
-                >
-                  My Books <span className="badge badge-cat">&#10514;</span>
-                </button>
-              </Link> */}
+              
               <div className="btn-link-custom mb-1">
                 <a
                   className="btn btn-link btn-sm dropdown-toggle text-secondary text-decoration-none"
@@ -404,7 +368,7 @@ const MemberPortalELibrary = () => {
         </div>
       </section>
 
-      <section className="container list mb-5">
+      <section className="container list mb-5 mt-5">
         {/* <p className="list-total mb-4">{`Showing 1 - ${data?.length} books`}</p> */}
         <div className="row row-cols-1 row-cols-md-4 g-5 mb-2">
           {data && data.length < 1 && <div>No Book Matched your search</div>}
@@ -460,26 +424,6 @@ const MemberPortalELibrary = () => {
         <Credit display={modal.display} changeModalDisplay={toggleModal} />
       )}
 
-      {/* {pdfReact.display && (
-        <PdfviewerReact
-          display={pdfReact.display}
-          changeDisplay={togglePdfReact}
-          url={pdfReact.url}
-        />
-      )} */}
-
-      
-      {
-        
-        // <Modal
-        //   show={showUpload}
-        //   onHide={handleClose}
-        //   backdrop="static"
-        //   keyboard={false}
-        // >
-        //   <UploadViewer></UploadViewer>
-        // </Modal>
-      }
     </DashboardStyles>
   );
 };

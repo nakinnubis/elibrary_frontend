@@ -292,8 +292,10 @@ const DashboardStyles = styled.div`
   }
 
   .card-img-top {
-    width: 80%;
-    height: 100%;
+    max-width: 80%;
+    max-height: 100%;
+    align-self: center;
+    
   }
   .card-hover {
     transition: all 0.3s ease-in-out;
@@ -306,6 +308,7 @@ const DashboardStyles = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
+    
   }
 
   .btn-cus {
@@ -353,14 +356,6 @@ const DashboardStyles = styled.div`
     font-size: 1rem;
     color: #8181a5;
   }
-  .pag-col .inactive,
-  .pag-col .active {
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    letter-spacing: 0.21px;
-    color: #1c1d21;
-  }
   .pag-col .active {
     background: #075f49;
     border-radius: 6px;
@@ -376,7 +371,7 @@ const DashboardStyles = styled.div`
     background: #ffffff;
     border: 1px solid #ced4da;
     border-radius: 6px;
-    width: 45px;
+    width: 50px;
     margin-left: 0.6rem;
   }
   .pag-col input:focus {
@@ -388,24 +383,13 @@ const DashboardStyles = styled.div`
     margin-left: 0.6rem;
   }
 
-  .pagination {
-    width: auto;
-
-    .page-item.active {
-      background: #075f49;
-      .page-link {
-        color: #ffffff;
-      }
-    }
-
-    .page-link.active {
-      color: #ffffff;
-    }
-
-    .page-item {
-      width: 50px;
+  .page-item {
       padding: 5px;
       text-align: center;
+    }
+    .page-link:hover{
+      background: #075f49;
+      color: #fff;
     }
 
     .page-link {
@@ -414,7 +398,14 @@ const DashboardStyles = styled.div`
       border: none;
       background: none;
     }
-  }
+
+  .page-item.active .page-link{
+
+    z-index: 3;
+    color: #fff;
+    background-color: #075f49;
+    border-color: #075f49;
+}
 
   @media only screen and (max-width: 990px) {
     .msg-span {
@@ -445,6 +436,9 @@ const DashboardStyles = styled.div`
     .user-icon {
       font-size: 0.5rem;
     }
+     .card-img-top {
+    object-fit: contain;
+  }
   }
 `;
 

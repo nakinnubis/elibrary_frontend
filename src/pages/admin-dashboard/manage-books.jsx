@@ -32,7 +32,7 @@ const ManageBooks = () => {
   const [activePage, setActivePage] = useState(1);
   const [TotalBooks, SetTotalBooks] = useState(0);
 
-  const baseUrl = " https://1b9c41ffd051.ngrok.io/";
+  const baseUrl = " http://localhost:5000/";
   
   
   const { search } = useLocation();
@@ -184,7 +184,7 @@ const openCat = () => {
               type="number"
               className="py-1 px-2 align-self-baseline"
               min="1"
-              max={9}
+              max={Math.ceil(TotalBooks/pageSize)}
               value={goTo}
               onChange={(e)=>{setGoto(e.target.value)}}
             />
@@ -200,7 +200,7 @@ const openCat = () => {
       </DashboardStyles>
 
       <AddBookModal
-        url={` https://1b9c41ffd051.ngrok.io/api/Document/Upload?username=${user}`}
+        url={` ${baseUrl}api/Document/Upload?username=${user}`}
         user={user}
         show={modalBookShow}
         onHide={() => setBookModalShow(false)}

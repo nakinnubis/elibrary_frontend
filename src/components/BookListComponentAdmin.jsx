@@ -12,7 +12,7 @@ export const BookListComponentAdmin = (data) => {
         <thead>
           <tr>
             <th>Book Title</th>
-            <th>Book Authur</th>
+            <th>Book Author</th>
             <th>Status</th>
             <th>Date Created</th>
           </tr>

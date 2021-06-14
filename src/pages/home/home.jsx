@@ -29,7 +29,7 @@ import axios from "axios";
 
 export default function Home() {
     const [data, setData] = useState([])
-    const baseUrl = "https://1b9c41ffd051.ngrok.io/";
+    const baseUrl = "https://elib.vascloud.ng/";
     // const [pdf, setPdf] = useState({ display: false, url: null });
     // const [modal, setModal] = useState({ display: false });
     // const [showUpload, setShowUpload] = useState(false);
@@ -83,7 +83,7 @@ export default function Home() {
         }
       );
       const doc = await response.json();
-      return doc
+      return doc;
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +94,7 @@ export default function Home() {
   
     try {
       const response = await fetch(
-        `https://1b9c41ffd051.ngrok.io/api/Document/BookCounts`,
+        `${baseUrl}api/Document/BookCounts`,
         {
           method: "GET",
           headers: {
@@ -116,13 +116,10 @@ export default function Home() {
   useEffect(async () => {
 
     let doc = await getData();
-    console.log("iamtesting doc", doc.data)
     let NumBooks = await getTotalBooks();
     SetTotalBooks(NumBooks?.data)
     setData(doc?.data);
-    console.log("iamtesting data", data)
-
-    // setData(doc);
+    
     
     }, []);
 
@@ -464,7 +461,7 @@ export default function Home() {
                 </p>
 
                 <div className="row row-cols-1 row-cols-lg-4 g-5 mt-2">
-                    
+                    {!data && <div>No book to display yet</div>}
                     {displayUsers}
                 </div>
 

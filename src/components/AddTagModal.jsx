@@ -11,7 +11,7 @@ export default function AddTagModal(props) {
   const history = useHistory()
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch(" https://1b9c41ffd051.ngrok.io/api/Tag/AddTag", {
+    fetch(" http://localhost:5000/api/Tag/AddTag", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

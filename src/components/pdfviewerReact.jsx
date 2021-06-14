@@ -27,7 +27,7 @@ export default function PdfviewerReact(props) {
 
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const Base_Url = "https://1b9c41ffd051.ngrok.io/"
+  const Base_Url = " https://elib.vascloud.ng/ "
 //   const Base_Url = "http://102.130.127.119:80/"
     
   function onDocumentLoadSuccess({ numPages }) {
@@ -58,7 +58,7 @@ export default function PdfviewerReact(props) {
         <Document
           // URL={`${Base_Url + url}`}
           
-          file={{url: `${Base_Url + props.url}`}}
+          file={{url: `${props.url}`}}
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={console.error}
         >

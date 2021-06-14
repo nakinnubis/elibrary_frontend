@@ -10,11 +10,12 @@ import SuccessModal from "./SuccessModal";
 import ErrorModal from "./ErrorModal";
 
 export default function AddBookModal(props) {
-  const tagURL = " https://1b9c41ffd051.ngrok.io/api/Tag/GetAllGetTags";
-  const folderURL = " https://1b9c41ffd051.ngrok.io/api/Folder/GetFolders";
-  const catURL = " https://1b9c41ffd051.ngrok.io/api/Category/GetAllGetCategories";
-  const accessURL = " https://1b9c41ffd051.ngrok.io/api/AccessLevel/GetAccessLevels";
-  const createTagURL = " https://1b9c41ffd051.ngrok.io/api/Tag/AddTag"
+  const baseURL = " https://elib.vascloud.ng/ "
+  const tagURL = ` ${baseURL}api/Tag/GetAllGetTags `;
+  const folderURL = ` ${baseURL}api/Folder/GetFolders `;
+  const catURL = ` ${baseURL}api/Category/GetAllGetCategories `;
+  const accessURL = ` ${baseURL}api/AccessLevel/GetAccessLevels `;
+  const createTagURL = ` ${baseURL}api/Tag/AddTag `
 
   const [state, setState] = useState(false);
 
