@@ -11,11 +11,11 @@ import ErrorModal from "./ErrorModal";
 
 export default function AddBookModal(props) {
   const baseURL = " https://elib.vascloud.ng/ "
-  const tagURL = ` ${baseURL}api/Tag/GetAllGetTags `;
-  const folderURL = ` ${baseURL}api/Folder/GetFolders `;
-  const catURL = ` ${baseURL}api/Category/GetAllGetCategories `;
-  const accessURL = ` ${baseURL}api/AccessLevel/GetAccessLevels `;
-  const createTagURL = ` ${baseURL}api/Tag/AddTag `
+  const tagURL = " https://elib.vascloud.ng/api/Tag/GetAllGetTags ";
+  const folderURL = " https://elib.vascloud.ng/api/Folder/GetFolders ";
+  const catURL = " https://elib.vascloud.ng/api/Category/GetAllGetCategories ";
+  const accessURL = " https://elib.vascloud.ng/api/AccessLevel/GetAccessLevels ";
+  
 
   const [state, setState] = useState(false);
 
@@ -132,9 +132,9 @@ export default function AddBookModal(props) {
       const folderResult = await response.json();
       const newData = folderResult.data.map(changeFolderValue);
       setfolders(newData);
-      // console.log({folders})
+      
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
@@ -152,7 +152,7 @@ export default function AddBookModal(props) {
       const newData = categoryResult.data.result.map(changeCategoryValue);
       setCategory(newData);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
@@ -170,7 +170,7 @@ export default function AddBookModal(props) {
       const newData = accessResult.data.map(changeAccessValue);
       setAccess(newData);
     } catch (error) {
-      // console.log(error)
+      console.log(error)
     }
   };
 
@@ -189,18 +189,11 @@ export default function AddBookModal(props) {
 
       setOption(newData);
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
-
-  // const newOption = option.data.map(changeTagValue)
+  
   useEffect(() => {
     async function fetchData() {
       await fetchfolders();
@@ -208,6 +201,7 @@ export default function AddBookModal(props) {
       await fetchAccess();
       await fetchTag();
       setLoading(false);
+      
     }
     fetchData();
   }, []);
@@ -250,7 +244,6 @@ export default function AddBookModal(props) {
       PublishYear: publishYear,
     };
 
-    console.log("iamdoc",docs);
     const formdata = new FormData();
     formdata.append("file", book, book.name);
     formdata.append("Document", JSON.stringify(docs));
@@ -270,8 +263,7 @@ export default function AddBookModal(props) {
       fetch(props.url, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log("This is the result", result.message);
-
+        
         if (result.message === message) {
           SetUploaded(!uploaded);
         }
@@ -335,7 +327,7 @@ export default function AddBookModal(props) {
                 id="upload-doc"
                 accept=".doc, .docx,.ppt, .pptx,.txt,.pdf"
                 onChange={(e) => {
-                  console.log(e.target.files[0]);
+                  
                   setBook(e.target.files[0]);
                 }}
                 hidden
@@ -441,7 +433,7 @@ export default function AddBookModal(props) {
                         type="checkbox"
                         onChange={(e) => {
                           setIsChecked(!isChecked);
-                          console.log(isChecked);
+                          
                         }}
                       />
                       <span className="slider round"></span>
