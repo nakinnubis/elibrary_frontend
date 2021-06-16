@@ -11,12 +11,12 @@
   position: fixed;
   z-index: 9999;
   left: 50%;
-  top: 0%;
-  transform: translate(-50%, 0%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 90vw;
-  height: 75vh;
+  height: 95vh;
   padding:2% 5%;
-  margin-top: 25vh;
+  /* margin-top: 25vh; */
   /* background-color:transparent; */
   background: rgba(236, 243, 241, 1);
   overflow: hidden;

@@ -1,12 +1,18 @@
 import { useEffect } from 'react'
-import { useRef } from 'react'
-import "../styles/iframe.css"
+import { useRef, useState } from 'react'
+import { Modal} from "react-bootstrap";
 
-let Base_Url = "https://elib.vascloud.ng/"
+import "../styles/iframe.css"
+import { Document, Page, pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
 
 export default function Pdfviewer({ url = "", display = false, changeDisplay }) {
   let ref = useRef()
-  
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const Base_Url = " https://elib.vascloud.ng/ "
+
 
   useEffect(() => {
     window.addEventListener('click', removeClick)
@@ -20,6 +26,23 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
       changeDisplay()
     }
   }
+   function onDocumentLoadSuccess({ numPages }) {
+            setNumPages(numPages);
+            setPageNumber(1);
+    }
+
+    function changePage(offset) {
+        setPageNumber(prevPageNumber => prevPageNumber + offset);
+    }
+
+    function previousPage() {
+        changePage(-1);
+    }
+
+    function nextPage() {
+        changePage(1);
+    }
+
   return (display ?
     (<div className={"wrapper-frame"} ref={ref}>
 
@@ -29,13 +52,37 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
           &times;
         </button>
       </div>
-      <embed
-        title="Inline Frame Example"
-        className={"iframe-display"}
-        // src = {`https://docs.google.com/gview?url=${Base_Url + url}&embedded=true`}>
-        src = {`${Base_Url + url}#toolbar=0`}>
-        
-      </embed>
+      <Document
+          // URL={`${Base_Url + url}`}
+          
+          file={{url: url}}
+          onLoadSuccess={onDocumentLoadSuccess}
+          onLoadError={console.error}
+        >
+          <Page pageNumber={pageNumber} />
+        </Document>
+        <div>
+          <p>
+            Page {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
+          </p>
+          <button
+            type="button"
+            disabled={pageNumber <= 1}
+            onClick={previousPage}
+            className="pdfbutton"
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            disabled={pageNumber >= numPages}
+            onClick={nextPage}
+            className="pdfbutton"
+          >
+            Next
+          </button>
+        </div>
+      
     </div>) :
     <></>
   )

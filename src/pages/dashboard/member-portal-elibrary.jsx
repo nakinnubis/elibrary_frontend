@@ -136,7 +136,7 @@ const MemberPortalELibrary = () => {
 
   const showPdf = data => {
     let book_url = data._source.path;
-    setPdf({ display: true, url: book_url });
+    setPdf({ display: true, url: baseUrl + book_url });
   };
 
   const showModal = () => {
