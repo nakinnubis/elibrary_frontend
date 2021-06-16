@@ -49,18 +49,37 @@ const DashboardStyles = styled.div`
     line-height: 1.125rem;
     padding-left: 0.5rem;
   }
-  .card-style {
-    background: rgba(177, 224, 35, 0.1);
-    border-radius: 5px;
-    height: 9.56rem;
-    font-size: 1.125rem;
-    line-height: 1.7rem;
-    border: 1px solid #b1e023;
-    color: #055844;
-  }
-  .card-title {
-    max-height: 3.7rem;
-  }
+.card1-h2 {
+  font-size: 3rem;
+  line-height: 4.5rem;
+}
+.card1-p {
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+  color: #afb0b1;
+}
+.card1 {
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.625rem;
+  width: 70%;
+  height: 24rem;
+  margin: 2rem 0;
+  text-align: center;
+  padding: 1rem auto;
+}
+.card1 h6 {
+  padding: 2rem 0 5rem;
+}
+// .img-cont {
+//   height: 9.375‬rem;
+//   position: relative;
+//   display: flex;
+// }
+
+.img-cus {
+  height: inherit;
+}
 
   .wel-details {
     display: flex;
@@ -304,7 +323,7 @@ const DashboardStyles = styled.div`
     transform: scale(1.1);
   }
   .img-cont {
-    height: 150px;
+    height: 12rem;
     position: relative;
     display: flex;
     justify-content: center;
@@ -417,7 +436,25 @@ const DashboardStyles = styled.div`
     .wel-msg img {
       padding-right: 1rem;
     }
+    
   }
+
+  @media only screen and (min-width:760px) and (max-width: 770pxpx) {
+  .row-cols-1>* {
+    width: 45%;
+  }
+  .row>* {
+    margin: 1rem auto !important;
+    
+  }
+  .img-cont {
+    height: 15rem;
+  }
+  .search-icon {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem
+  }
+}
   @media only screen and (max-width: 760px) {
     .logo {
       max-width: 150px;
@@ -439,6 +476,14 @@ const DashboardStyles = styled.div`
      .card-img-top {
     object-fit: contain;
   }
+  .row>* {
+    margin: 1rem auto !important;
+    max-width: 75%;
+  }
+  .search-icon {
+    padding-right: 1rem;
+  }
+
   }
 `;
 

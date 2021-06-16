@@ -160,7 +160,7 @@ const openCat = () => {
         <Heading heading="E-Library Activities" />
 
         <BookListComponentAdmin data={data} />
-        <section className="container pag my-10 flex-wrap">
+        <section className="container pag my-3 pb-5 flex-wrap">
         <div className="row d-flex justify-content-between">
           <div className="pag-col col-sm-3 my-1">
             <Pagination

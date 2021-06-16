@@ -24,6 +24,10 @@
   background-color: #b1e023;
   color: #055844;
 }
+.card-ft-right{
+  color: #055844;
+  font-weight: bolder;
+}
 .header-nav {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   padding-top: 1rem;
@@ -91,11 +95,11 @@
 .card1 h6 {
   padding: 2rem 0 5rem;
 }
-.img-cont {
+/* .img-cont {
   height: 9.375‬rem;
   position: relative;
   display: flex;
-}
+} */
 
 .img-cus {
   height: inherit;
@@ -255,7 +259,7 @@
     transform: scale(1.1);
   }
   .img-cont {
-    height: 150px;
+    height: 12rem;
     position: relative;
     display: flex;
     justify-content: center;
@@ -336,6 +340,7 @@
 
 .section-4 .card {
   border: none;
+  margin-bottom: 3rem
   /* width: 15rem; */
 }
 
@@ -569,7 +574,20 @@
   cursor: pointer;
 }
 
+
+
 @media only screen and (max-width: 760px) {
+  .e-lib_box h1 {
+    font-weight: bold;
+    font-size: 2.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.45px;
+
+  }
+  .row>* {
+    margin: 1rem auto !important;;
+  }
+
   .e-lib-logo {
     max-width: 150px;
     height: 60px;
@@ -584,5 +602,21 @@
   }
   .card2-a {
     display: none;
+  }
+  .learn {
+    margin-top: 0rem;
+    padding: 0;
+  }
+
+  .section-4 .para {
+    margin-bottom: 0rem;
+  }
+}
+@media only screen and (min-width:760px) and (max-width: 770px) {
+  .row-cols-1>* {
+    width: 50%;
+  }
+  .row>* {
+    margin: 1rem auto !important;;
   }
 }

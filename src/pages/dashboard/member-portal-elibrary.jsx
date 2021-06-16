@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import DashboardStyles from "../../styles/DashboardStyles";
-import "../../styles/LibStyles.module.css";
+// import "../../styles/LibStyles.module.css";
 import Pdfviewer from "../../components/pdfviewer";
 import Credit from "../../components/statusModal";
 import UploadViewer from "../../components/uploadModal";
@@ -213,7 +213,7 @@ const MemberPortalELibrary = () => {
           <div className="card h-100 card-shadow card-hover">
             <div className="img-cont my-auto" onScroll={stopScroll}>
               <img
-                className="card-img-top img-cus"
+                className="img-cus"
                 src={`${baseUrl + user?._source.thumbnailpath}`}
                 alt="Book Image"
                 width="100%"
@@ -356,7 +356,7 @@ const MemberPortalELibrary = () => {
         </div>
       </section>
 
-      <section className="container pag my-10 flex-wrap">
+      <section className="container pag my-3 pb-5 flex-wrap">
         <div className="row d-flex justify-content-between">
           <div className="pag-col col-sm-3 my-1">
             <Pagination

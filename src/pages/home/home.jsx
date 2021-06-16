@@ -278,7 +278,7 @@ export default function Home() {
         <div className="container e-lib_box">
             <div className="row">
                 <div className="col-md-5">
-                    <h1 className="py-5 mt-5">Gain New Knowledge</h1>
+                    <h1 className="main-header py-5 mt-5">Gain New Knowledge</h1>
                     <p className="mb-5">with NAPE online library of resources and tools, trusted by experts & professionals
                         worldwide.</p>
                     {/* <div className="search-wrapper my-5 p-2">
@@ -342,7 +342,7 @@ export default function Home() {
                 <div className="col-md-5">
                     <h5 className="mt-5 intro-header">INTRODUCING</h5>
                     <h3 className="learn-h3">A simple subscription for all your books in one place</h3>
-                    <p className="mb-5 para">Most experts don’t have books in one place.
+                    <p className="para">Most experts don’t have books in one place.
                         Get unlimited access to all of your learning resources, whenever you need them, at a price that
                         works for you. Choose a flexible monthly plan, or save money on an annual subscription.</p>
             
@@ -469,7 +469,7 @@ export default function Home() {
         </div>
         
     </section>
-    <section className="container pag my-10 flex-wrap">
+    <section className="container pag my-3 pb-5 flex-wrap">
         <div className="row d-flex justify-content-between">
           <div className="pag-col col-sm-3 my-1">
             <Pagination
@@ -487,7 +487,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="pag-col col-sm-3  d-flex">
+          <div className="pag-col col-sm-3 d-flex">
             <p className="align-self-baseline">Go to Page: </p>
             <input
               type="number"
@@ -498,7 +498,7 @@ export default function Home() {
               onChange={(e)=>{setGoto(e.target.value)}}
             />
             <button
-              className="btn active go align-self-baseline"
+              className="btn active go align-self-baseline "
               onClick={handleGoTo}
             >
               Go
