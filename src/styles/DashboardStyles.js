@@ -1,6 +1,7 @@
 import styled from "styled-components/macro";
 
 const DashboardStyles = styled.div`
+  padding-top:2rem;
   .notifications-wrapper {
     border: 1px solid #ced4da;
     border-top: none;

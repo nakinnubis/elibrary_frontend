@@ -3,9 +3,15 @@ import NotificationListStyles from "../styles/NotificationListStyles";
 import { dateFunc } from "../helper/dateFormatter";
 import "./styles.css";
 import Menu from "../assets/menu.svg";
+import { useState } from "react";
+import DeleteBookModal from "./DeleteBookModal";
+
 
 export const BookListComponentAdmin = (data) => {
   const bookLists = data.data || [];
+  const [showDelete, setShowDelete] = useState(false)
+  const [title, setTitle] = useState("") 
+
   return (
     <NotificationListStyles>
       <Table striped bordered hover>
@@ -20,6 +26,7 @@ export const BookListComponentAdmin = (data) => {
 
         <tbody>
           {bookLists?.map((bookList) => {
+            // setTitle(bookList._source.title)
             return (
               <tr key={bookList.id}>
                 <td>{bookList._source.title}</td>
@@ -27,13 +34,27 @@ export const BookListComponentAdmin = (data) => {
                 <td>{bookList._source.active ? "Active" : "Inactive"}</td>
                 <td>{dateFunc(bookList._source.uploaddate)}</td>
                 <td>
-                  <img src={Menu} alt="" />
+                  <div class="dropdown">
+                    <img src={Menu} alt="" class="dropbtn" />
+                    <div class="dropdown-content">
+                     
+                    </div>
+                  </div>
+                  
                 </td>
+                
               </tr>
             );
           })}
         </tbody>
+        <DeleteBookModal
+                  show={showDelete}
+                  onHide={() => setShowDelete(false)}
+                  name={title}
+
+                />
       </Table>
     </NotificationListStyles>
+    
   );
 };

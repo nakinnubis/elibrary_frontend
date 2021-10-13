@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import DashboardStyles from "../../styles/DashboardStyles";
-// import "../../styles/LibStyles.module.css";
 import Pdfviewer from "../../components/pdfviewer";
 import Credit from "../../components/statusModal";
 import UploadViewer from "../../components/uploadModal";
@@ -34,16 +33,17 @@ const MemberPortalELibrary = () => {
   const baseUrl = " https://elib.vascloud.ng/";
   const [activePage, setActivePage] = useState(1);
   const [TotalBooks, SetTotalBooks] = useState(0);
+  const [width, setWidth] = useState("3rem")
   
   
   const { search } = useLocation()
   const memberData = queryString.parse(search)
-  const { memberType, isFinanciallyUpdated } = memberData
+  const { memberType, isFinanciallyUpdated  } = memberData
   window.localStorage.setItem("user", JSON.stringify(memberData))
   
   
   useEffect(() => {
-    if (isFinanciallyUpdated=="Active") {
+    if (isFinanciallyUpdated == "1") {
       setStatus(true);
     }
   }, []);
@@ -105,7 +105,7 @@ const MemberPortalELibrary = () => {
     try {
       const response = await fetch(
         `${baseUrl}api/Document/liveSearch?keyword=${searchBook}`,
-        // `${baseUrl}api/Document/liveSearch?keyword=e}`,
+       
         {
           method: "GET",
           headers: {
@@ -123,7 +123,7 @@ const MemberPortalELibrary = () => {
 
   useEffect(async () => {
     await liveSearch();
-  }, [searchBook]);
+  }, [searchBook, width]);
 
   useEffect( async () => {
     let doc =  await getData();
@@ -162,7 +162,7 @@ const MemberPortalELibrary = () => {
     }
     axios
       .get(
-        `${baseUrl}api/Document/${url}?page=${pageNumber - 1}&pageSize=${pageSize}`,
+        `${baseUrl}api/Document/${url}?page=${pageNumber}&pageSize=${pageSize}`,
 
         {
           method: 'GET',
@@ -191,7 +191,7 @@ const MemberPortalELibrary = () => {
     }
     axios
     .get(
-      `${baseUrl}api/Document/${url}?page=${goTo - 1}&pageSize=${pageSize}`,
+      `${baseUrl}api/Document/${url}?page=${goTo}&pageSize=${pageSize}`,
       {
         method: 'GET',
         headers: {
@@ -261,8 +261,9 @@ const MemberPortalELibrary = () => {
                 className="search-input w-75"
                 placeholder="Search books, author, keywords"
                 onChange={e => {
+                  if (e.target.value.length > 0){
                   setSearchBook(e.target.value);
-                }}
+                }}}
               />
             </div>
           </div>
@@ -376,11 +377,27 @@ const MemberPortalELibrary = () => {
             <p className="align-self-baseline">Go to Page: </p>
             <input
               type="number"
-              className="py-1 px-2 align-self-baseline"
+              style={{width: width, padding:"5px 7px"}}
+              className="align-self-baseline"
               min="1"
               max={Math.ceil(TotalBooks/pageSize)}
               value={goTo}
-              onChange={(e)=>{setGoto(e.target.value)}}
+              onChange={(e)=>{
+                let newValue = e.target.value
+                let maxValue = Math.ceil(TotalBooks/pageSize)
+                if (newValue > maxValue){
+                  newValue = maxValue
+                }
+                if (newValue < 1){
+                  newValue = 1
+                }
+                setGoto(newValue)
+                let inputLength = newValue.toString().split("").length 
+                if (inputLength > 2){
+                  setWidth(inputLength + "rem")
+                }
+                
+              }}
             />
             <button
               className="btn active go align-self-baseline"

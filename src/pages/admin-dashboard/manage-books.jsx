@@ -26,11 +26,15 @@ const ManageBooks = () => {
   const [modalCategoryShow, setCategoryModalShow] = React.useState(false);
   const [modalTagShow, setTagModalShow] = React.useState(false);
   const [user, setUser] = useState("");
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(12)
   const [goTo, setGoto] = useState(1);
   const [activePage, setActivePage] = useState(1);
   const [TotalBooks, SetTotalBooks] = useState(0);
+  const [width, setWidth] = useState("3rem")
+  const [searchBook, setSearchBook] = useState("");
+
+  
 
   const baseUrl = " https://elib.vascloud.ng/";
   
@@ -109,7 +113,7 @@ const openCat = () => {
    const handlePagination = pageNumber => {
     axios
       .get(
-        `${baseUrl}api/Document/All?page=${pageNumber - 1}&pageSize=${pageSize}`,
+        `${baseUrl}api/Document/All?page=${pageNumber}&pageSize=${pageSize}`,
        
         {
           method: 'GET',
@@ -131,7 +135,7 @@ const openCat = () => {
   const handleGoTo = () => {
     axios
     .get(
-      `${baseUrl}api/Document/All?page=${goTo - 1}&pageSize=${pageSize}`,
+      `${baseUrl}api/Document/All?page=${goTo}&pageSize=${pageSize}`,
       
       {
         method: 'GET',
@@ -147,6 +151,34 @@ const openCat = () => {
     });
   };
 
+  const liveSearch = async () => {
+    try {
+      const response = await fetch(
+        `${baseUrl}api/Document/liveSearch?keyword=${searchBook}`,
+
+        {
+          method: "GET",
+          headers: {
+            ApiKey:
+              "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c"
+          }
+        }
+      );
+      const doc = await response.json();
+      setData(doc?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(async () => {
+    await liveSearch();
+  }, [searchBook, width])
+
+  const handleChange = (e) => {
+    setSearchBook(e.target.value)
+  }
+
   return (
     <>
       <DashboardStyles className="wrapper">
@@ -157,7 +189,7 @@ const openCat = () => {
           openTag={openTag}
         />
 
-        <Heading heading="E-Library Activities" />
+        <Heading heading="E-Library Activities" handleChange={handleChange} />
 
         <BookListComponentAdmin data={data} />
         <section className="container pag my-3 pb-5 flex-wrap">
@@ -182,11 +214,27 @@ const openCat = () => {
             <p className="align-self-baseline">Go to Page: </p>
             <input
               type="number"
-              className="py-1 px-2 align-self-baseline"
+              style={{width: width, padding:"5px 7px"}}
+              className="align-self-baseline"
               min="1"
               max={Math.ceil(TotalBooks/pageSize)}
               value={goTo}
-              onChange={(e)=>{setGoto(e.target.value)}}
+              onChange={(e)=>{
+                let newValue = e.target.value
+                let maxValue = Math.ceil(TotalBooks/pageSize)
+                if (newValue > maxValue){
+                  newValue = maxValue
+                }
+                if (newValue < 1){
+                  newValue = 1
+                }
+                setGoto(newValue)
+                let inputLength = newValue.toString().split("").length 
+                if (inputLength > 2){
+                  setWidth(inputLength + "rem")
+                }
+                
+              }}
             />
             <button
               className="btn active go align-self-baseline"

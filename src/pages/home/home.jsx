@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { Link, useHistory } from "react-router-dom";
 // import Logo from "../../assets/logo.svg";
 // import ELibLogo from "../../assets/nape-e-lib.svg"
-// import SearchIcon from "../../assets/search-icon.svg"
+import SearchIcon from "../../assets/search-icon.svg"
 import ForwardArrow from "../../assets/forward-arrow.svg"
 import OnlineLib from "../../assets/Online Library 2.svg"
 // import Geology from "../../assets/geology.svg"
@@ -39,14 +39,36 @@ export default function Home() {
     const [activePage, setActivePage] = useState(1);
     const [modalShow, setModalShow] = useState(false);
     const [TotalBooks, SetTotalBooks] = useState(0);
+    const [width, setWidth] = useState("3rem")
+    const [searchBook, setSearchBook] = useState("");
 
 
     
 
     const stopScroll = e => {
         e.preventDefault();
-        console.log("scrolling");
+        
     };
+
+  const liveSearch = async () => {
+    try {
+      const response = await fetch(
+        `${baseUrl}api/Document/liveSearch?keyword=${searchBook}`,
+
+        {
+          method: "GET",
+          headers: {
+            ApiKey:
+              "dc5210e2cffaed0fa05abd84645e412f099ac3533f8f6c3bdbb1be038b7dab3c"
+          }
+        }
+      );
+      const doc = await response.json();
+      setData(doc?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   //   const handleClose = () => setShowUpload(false);
 
   //   const showPdf = data => {
@@ -120,14 +142,17 @@ export default function Home() {
     SetTotalBooks(NumBooks?.data)
     setData(doc?.data);
     
-    
-    }, []);
+  }, []);
+
+  useEffect(async () => {
+    await liveSearch();
+  }, [searchBook, width])
 
 
   const handlePagination = pageNumber => {
     axios
       .get(
-        `${baseUrl}api/Document/MembersOnlyDocumentListing?page=${pageNumber - 1}&pageSize=${pageSize}`,
+        `${baseUrl}api/Document/MembersOnlyDocumentListing?page=${pageNumber}&pageSize=${pageSize}`,
         {
           method: 'GET',
           headers: {
@@ -148,7 +173,7 @@ export default function Home() {
   const handleGoTo = () => {
     axios
     .get(
-      `${baseUrl}api/Document/MembersOnlyDocumentListing?page=${goTo - 1}&pageSize=${pageSize}`,
+      `${baseUrl}api/Document/MembersOnlyDocumentListing?page=${goTo}&pageSize=${pageSize}`,
       // `https://jsonplaceholder.typicode.com/posts?_page=${pageNumber}&_limit=20`
       {
         method: 'GET',
@@ -459,11 +484,20 @@ export default function Home() {
                     {/* <button className="btn btn-link text-decoration-none text-success"><strong>View all
                             categories</strong></button> */}
                 </p>
+                
+                <div className="d-flex bg-white float-right search">
+                  <img src={SearchIcon} alt="" />
+                  <input className="form-control search-input" type="search" placeholder="Search books, author, keywords" aria-label="Search" onChange={e => {
+                     if (e.target.value.length > 0){
+                     setSearchBook(e.target.value)}}}/>
+
+                </div>
 
                 <div className="row row-cols-1 row-cols-lg-4 g-5 mt-2">
                     {!data && <div>No book to display yet</div>}
                     {displayUsers}
                 </div>
+                
 
             </div>
         </div>
@@ -491,11 +525,27 @@ export default function Home() {
             <p className="align-self-baseline">Go to Page: </p>
             <input
               type="number"
-              className="py-1 px-2 align-self-baseline"
+              style={{width: width, padding:"5px 7px"}}
+              className="align-self-baseline"
               min="1"
               max={Math.ceil(TotalBooks/pageSize)}
               value={goTo}
-              onChange={(e)=>{setGoto(e.target.value)}}
+              onChange={(e)=>{
+                let newValue = e.target.value
+                let maxValue = Math.ceil(TotalBooks/pageSize)
+                if (newValue > maxValue){
+                  newValue = maxValue
+                }
+                if (newValue < 1){
+                  newValue = 1
+                }
+                setGoto(newValue)
+                let inputLength = newValue.toString().split("").length 
+                if (inputLength > 2){
+                  setWidth(inputLength + "rem")
+                }
+                
+              }}
             />
             <button
               className="btn active go align-self-baseline "

@@ -611,6 +611,9 @@
   .section-4 .para {
     margin-bottom: 0rem;
   }
+  .search{
+    width: 90%;
+  }
 }
 @media only screen and (min-width:760px) and (max-width: 770px) {
   .row-cols-1>* {
@@ -618,5 +621,8 @@
   }
   .row>* {
     margin: 1rem auto !important;;
+  }
+  .search{
+    width: 90%;
   }
 }

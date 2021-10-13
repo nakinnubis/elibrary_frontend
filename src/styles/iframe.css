@@ -13,18 +13,24 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 90vw;
-  height: 95vh;
+  width: 100vw;
+  height: 100vh;
   padding:2% 5%;
+  
   /* margin-top: 25vh; */
   /* background-color:transparent; */
-  background: rgba(236, 243, 241, 1);
+  /* background: rgba(236, 243, 241, 1); */
+  background-color: rgba(0,0.,0,0.7);
   overflow: hidden;
 }
 .iframe-header{
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
+}
+
+.iframe-header p{
+  align-self: center;
 }
 .closebtn {
     background: #075F49;
@@ -67,4 +73,71 @@
 
 .smallFrame::-webkit-scrollbar{
   display: none;
+}
+.pdfbutton {
+  margin-right: 10px;
+  background: #075f49;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  width: 100px;
+  cursor: pointer;
+  /* box-shadow: 2px 2px 2px 1px #ccc; */
+  border-radius: 5px;
+  margin-top: 1rem;
+  
+}
+
+/* For pdf */
+.react-pdf__Page {
+  margin-top: 10px;
+}
+.react-pdf__Page__textContent {
+  border: 1px solid darkgrey;
+  box-shadow: 5px 5px 5px 1px #ccc;
+  border-radius: 5px;
+  
+}
+
+.react-pdf__Page__annotations.annotationLayer {
+  padding: 20px;
+}
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+}
+.app{
+  text-align: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  
+  padding: 2rem;
+  border: 1px solid #888;
+  overflow: auto;
+  width: 90vw;
+  height: 95vh;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+@media print {
+  .pdf-container {
+    display: none;
+  }
 }

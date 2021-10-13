@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
 import { useRef, useState } from 'react'
-import { Modal} from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
 import "../styles/iframe.css"
-import { Document, Page, pdfjs } from 'react-pdf';
+import { Document, Page, pdfjs} from 'react-pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
 export default function Pdfviewer({ url = "", display = false, changeDisplay }) {
   let ref = useRef()
   const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
   const Base_Url = " https://elib.vascloud.ng/ "
 
 
@@ -26,62 +25,43 @@ export default function Pdfviewer({ url = "", display = false, changeDisplay }) 
       changeDisplay()
     }
   }
-   function onDocumentLoadSuccess({ numPages }) {
-            setNumPages(numPages);
-            setPageNumber(1);
-    }
-
-    function changePage(offset) {
-        setPageNumber(prevPageNumber => prevPageNumber + offset);
-    }
-
-    function previousPage() {
-        changePage(-1);
-    }
-
-    function nextPage() {
-        changePage(1);
-    }
+  
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
 
   return (display ?
     (<div className={"wrapper-frame"} ref={ref}>
 
-      <div className="iframe-header">
+      <div className="modal-content">
+        <div className="iframe-header">
         <p>Please be patient as the file may take time to load. Thank You</p>
         <button type="button"  className="closebtn" onClick={changeDisplay}>
           &times;
         </button>
       </div>
-      <Document
+      <div className="app">
+        <Document
           // URL={`${Base_Url + url}`}
           
           file={{url: url}}
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={console.error}
-        >
-          <Page pageNumber={pageNumber} />
-        </Document>
-        <div>
-          <p>
-            Page {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
-          </p>
-          <button
-            type="button"
-            disabled={pageNumber <= 1}
-            onClick={previousPage}
-            className="pdfbutton"
-          >
-            Previous
-          </button>
-          <button
-            type="button"
-            disabled={pageNumber >= numPages}
-            onClick={nextPage}
-            className="pdfbutton"
-          >
-            Next
-          </button>
-        </div>
+          // options={{ workerSrc: "/pdf.worker.js" }}
+          onContextMenu={(e) => e.preventDefault()}
+          className="pdf-container"
+          loading = {<Spinner animation="border" role="status"></Spinner>}
+      
+    >
+      {Array.from(new Array(numPages), (el, index) => (
+        <Page key={`page_${index + 1}`} 
+        pageNumber={index + 1}
+        loading = {<Spinner animation="border" role="status"></Spinner>} 
+        />
+      ))}
+    </Document>
+      </div>
+      </div>
       
     </div>) :
     <></>
