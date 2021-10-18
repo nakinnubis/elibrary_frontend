@@ -4,7 +4,7 @@ import { dateFunc } from "../helper/dateFormatter";
 import "./styles.css";
 import Menu from "../assets/menu.svg";
 import { useState } from "react";
-import DeleteBookModal from "./DeleteBookModal";
+
 
 
 export const BookListComponentAdmin = (data) => {
@@ -37,7 +37,6 @@ export const BookListComponentAdmin = (data) => {
                   <div class="dropdown">
                     <img src={Menu} alt="" class="dropbtn" />
                     <div class="dropdown-content">
-                     
                     </div>
                   </div>
                   
@@ -47,12 +46,7 @@ export const BookListComponentAdmin = (data) => {
             );
           })}
         </tbody>
-        <DeleteBookModal
-                  show={showDelete}
-                  onHide={() => setShowDelete(false)}
-                  name={title}
-
-                />
+      
       </Table>
     </NotificationListStyles>
     
